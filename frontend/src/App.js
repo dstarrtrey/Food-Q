@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import ClientList from "./pages/ClientList";
@@ -23,6 +23,13 @@ function App() {
           <Route component={NoMatch} />
         </Switch>
         <Footer />
+        <span>
+          <Link to="/">Home</Link>
+          <Link to="/login">Login</Link>
+          <Link to="/list">ClientList</Link>
+          <Link to="/menu">Menu</Link>
+          <Link to="/adminlist">OwnerList</Link>
+        </span>
       </div>
     </Router>
   );

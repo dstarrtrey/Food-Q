@@ -29,6 +29,8 @@ function Menu() {
       name: name.value,
       price: price.value
     }]);
+    setName('');
+    setPrice(0);
   }
 
 
