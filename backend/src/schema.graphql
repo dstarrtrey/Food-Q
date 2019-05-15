@@ -1,27 +1,12 @@
-type User {
-  id: ID! 
-  username: String!
-  password: String!
-}
-
-type MenuItem {
-  id: ID!
-  name: String!
-  cost: Int
-  inStock: Boolean
-}
-
-type WaitListItem {
-  id: ID! 
-  name: String!
-  partySize: Int!
-  phoneNumber: Int
-}
+# import * from './generated/prisma.graphql'
 
 type Mutation {
-  hi: String
+  createUser(username: String!, password: String!) : User!
+  createMenuItem(name: String!, cost: Int!, inStock: Boolean): MenuItem!
 }
 
 type Query {
   users: [User]!
+  menuItems: [MenuItem]!
+  waitlistItems: [WaitlistItem]!
 }

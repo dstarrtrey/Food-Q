@@ -1,7 +1,9 @@
 type User {
   id: ID! @id
   username: String! @unique
-  password: String! 
+  password: String!
+  createdAt: DateTime @createdAt
+  updatedAt: DateTime @updatedAt
 }
 
 type MenuItem {
@@ -9,11 +11,15 @@ type MenuItem {
   name: String!
   cost: Int
   inStock: Boolean @default(value: false)
+  createdAt: DateTime @createdAt
+  updatedAt: DateTime @updatedAt
 }
 
-type WaitListItem {
+type WaitlistItem {
   id: ID! @id
   name: String!
   partySize: Int!
   phoneNumber: Int
+  createdAt: DateTime @createdAt
+  updatedAt: DateTime @updatedAt
 }

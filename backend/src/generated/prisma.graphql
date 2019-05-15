@@ -1,5 +1,5 @@
 # source: https://us1.prisma.sh/david-l-starr-b3bc24/FoodQ/dev
-# timestamp: Wed May 15 2019 09:51:16 GMT-0800 (GMT-08:00)
+# timestamp: Wed May 15 2019 14:26:54 GMT-0800 (GMT-08:00)
 
 type AggregateMenuItem {
   count: Int!
@@ -9,7 +9,7 @@ type AggregateUser {
   count: Int!
 }
 
-type AggregateWaitListItem {
+type AggregateWaitlistItem {
   count: Int!
 }
 
@@ -17,6 +17,8 @@ type BatchPayload {
   """The number of nodes that have been affected by the Batch operation."""
   count: Long!
 }
+
+scalar DateTime
 
 """
 The `Long` scalar type represents non-fractional signed whole numeric values.
@@ -29,6 +31,8 @@ type MenuItem implements Node {
   name: String!
   cost: Int
   inStock: Boolean
+  createdAt: DateTime
+  updatedAt: DateTime
 }
 
 """A connection to a list of items."""
@@ -66,6 +70,10 @@ enum MenuItemOrderByInput {
   cost_DESC
   inStock_ASC
   inStock_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
 }
 
 type MenuItemPreviousValues {
@@ -73,6 +81,8 @@ type MenuItemPreviousValues {
   name: String!
   cost: Int
   inStock: Boolean
+  createdAt: DateTime
+  updatedAt: DateTime
 }
 
 type MenuItemSubscriptionPayload {
@@ -239,6 +249,50 @@ input MenuItemWhereInput {
 
   """All values that are not equal to given value."""
   inStock_not: Boolean
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+
+  """All values that are not equal to given value."""
+  updatedAt_not: DateTime
+
+  """All values that are contained in given list."""
+  updatedAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  updatedAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  updatedAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  updatedAt_lte: DateTime
+
+  """All values greater than the given value."""
+  updatedAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  updatedAt_gte: DateTime
 }
 
 input MenuItemWhereUniqueInput {
@@ -248,22 +302,22 @@ input MenuItemWhereUniqueInput {
 type Mutation {
   createUser(data: UserCreateInput!): User!
   createMenuItem(data: MenuItemCreateInput!): MenuItem!
-  createWaitListItem(data: WaitListItemCreateInput!): WaitListItem!
+  createWaitlistItem(data: WaitlistItemCreateInput!): WaitlistItem!
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
   updateMenuItem(data: MenuItemUpdateInput!, where: MenuItemWhereUniqueInput!): MenuItem
-  updateWaitListItem(data: WaitListItemUpdateInput!, where: WaitListItemWhereUniqueInput!): WaitListItem
+  updateWaitlistItem(data: WaitlistItemUpdateInput!, where: WaitlistItemWhereUniqueInput!): WaitlistItem
   deleteUser(where: UserWhereUniqueInput!): User
   deleteMenuItem(where: MenuItemWhereUniqueInput!): MenuItem
-  deleteWaitListItem(where: WaitListItemWhereUniqueInput!): WaitListItem
+  deleteWaitlistItem(where: WaitlistItemWhereUniqueInput!): WaitlistItem
   upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
   upsertMenuItem(where: MenuItemWhereUniqueInput!, create: MenuItemCreateInput!, update: MenuItemUpdateInput!): MenuItem!
-  upsertWaitListItem(where: WaitListItemWhereUniqueInput!, create: WaitListItemCreateInput!, update: WaitListItemUpdateInput!): WaitListItem!
+  upsertWaitlistItem(where: WaitlistItemWhereUniqueInput!, create: WaitlistItemCreateInput!, update: WaitlistItemUpdateInput!): WaitlistItem!
   updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
   updateManyMenuItems(data: MenuItemUpdateManyMutationInput!, where: MenuItemWhereInput): BatchPayload!
-  updateManyWaitListItems(data: WaitListItemUpdateManyMutationInput!, where: WaitListItemWhereInput): BatchPayload!
+  updateManyWaitlistItems(data: WaitlistItemUpdateManyMutationInput!, where: WaitlistItemWhereInput): BatchPayload!
   deleteManyUsers(where: UserWhereInput): BatchPayload!
   deleteManyMenuItems(where: MenuItemWhereInput): BatchPayload!
-  deleteManyWaitListItems(where: WaitListItemWhereInput): BatchPayload!
+  deleteManyWaitlistItems(where: WaitlistItemWhereInput): BatchPayload!
 }
 
 enum MutationType {
@@ -296,13 +350,13 @@ type PageInfo {
 type Query {
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
   menuItems(where: MenuItemWhereInput, orderBy: MenuItemOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [MenuItem]!
-  waitListItems(where: WaitListItemWhereInput, orderBy: WaitListItemOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [WaitListItem]!
+  waitlistItems(where: WaitlistItemWhereInput, orderBy: WaitlistItemOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [WaitlistItem]!
   user(where: UserWhereUniqueInput!): User
   menuItem(where: MenuItemWhereUniqueInput!): MenuItem
-  waitListItem(where: WaitListItemWhereUniqueInput!): WaitListItem
+  waitlistItem(where: WaitlistItemWhereUniqueInput!): WaitlistItem
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
   menuItemsConnection(where: MenuItemWhereInput, orderBy: MenuItemOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): MenuItemConnection!
-  waitListItemsConnection(where: WaitListItemWhereInput, orderBy: WaitListItemOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): WaitListItemConnection!
+  waitlistItemsConnection(where: WaitlistItemWhereInput, orderBy: WaitlistItemOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): WaitlistItemConnection!
 
   """Fetches an object given its ID"""
   node(
@@ -314,13 +368,15 @@ type Query {
 type Subscription {
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
   menuItem(where: MenuItemSubscriptionWhereInput): MenuItemSubscriptionPayload
-  waitListItem(where: WaitListItemSubscriptionWhereInput): WaitListItemSubscriptionPayload
+  waitlistItem(where: WaitlistItemSubscriptionWhereInput): WaitlistItemSubscriptionPayload
 }
 
 type User implements Node {
   id: ID!
   username: String!
   password: String!
+  createdAt: DateTime
+  updatedAt: DateTime
 }
 
 """A connection to a list of items."""
@@ -355,12 +411,18 @@ enum UserOrderByInput {
   username_DESC
   password_ASC
   password_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
 }
 
 type UserPreviousValues {
   id: ID!
   username: String!
   password: String!
+  createdAt: DateTime
+  updatedAt: DateTime
 }
 
 type UserSubscriptionPayload {
@@ -539,6 +601,50 @@ input UserWhereInput {
 
   """All values not ending with the given string."""
   password_not_ends_with: String
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+
+  """All values that are not equal to given value."""
+  updatedAt_not: DateTime
+
+  """All values that are contained in given list."""
+  updatedAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  updatedAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  updatedAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  updatedAt_lte: DateTime
+
+  """All values greater than the given value."""
+  updatedAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  updatedAt_gte: DateTime
 }
 
 input UserWhereUniqueInput {
@@ -546,24 +652,26 @@ input UserWhereUniqueInput {
   username: String
 }
 
-type WaitListItem implements Node {
+type WaitlistItem implements Node {
   id: ID!
   name: String!
   partySize: Int!
   phoneNumber: Int
+  createdAt: DateTime
+  updatedAt: DateTime
 }
 
 """A connection to a list of items."""
-type WaitListItemConnection {
+type WaitlistItemConnection {
   """Information to aid in pagination."""
   pageInfo: PageInfo!
 
   """A list of edges."""
-  edges: [WaitListItemEdge]!
-  aggregate: AggregateWaitListItem!
+  edges: [WaitlistItemEdge]!
+  aggregate: AggregateWaitlistItem!
 }
 
-input WaitListItemCreateInput {
+input WaitlistItemCreateInput {
   id: ID
   name: String!
   partySize: Int!
@@ -571,15 +679,15 @@ input WaitListItemCreateInput {
 }
 
 """An edge in a connection."""
-type WaitListItemEdge {
+type WaitlistItemEdge {
   """The item at the end of the edge."""
-  node: WaitListItem!
+  node: WaitlistItem!
 
   """A cursor for use in pagination."""
   cursor: String!
 }
 
-enum WaitListItemOrderByInput {
+enum WaitlistItemOrderByInput {
   id_ASC
   id_DESC
   name_ASC
@@ -588,31 +696,37 @@ enum WaitListItemOrderByInput {
   partySize_DESC
   phoneNumber_ASC
   phoneNumber_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
 }
 
-type WaitListItemPreviousValues {
+type WaitlistItemPreviousValues {
   id: ID!
   name: String!
   partySize: Int!
   phoneNumber: Int
+  createdAt: DateTime
+  updatedAt: DateTime
 }
 
-type WaitListItemSubscriptionPayload {
+type WaitlistItemSubscriptionPayload {
   mutation: MutationType!
-  node: WaitListItem
+  node: WaitlistItem
   updatedFields: [String!]
-  previousValues: WaitListItemPreviousValues
+  previousValues: WaitlistItemPreviousValues
 }
 
-input WaitListItemSubscriptionWhereInput {
+input WaitlistItemSubscriptionWhereInput {
   """Logical AND on all given filters."""
-  AND: [WaitListItemSubscriptionWhereInput!]
+  AND: [WaitlistItemSubscriptionWhereInput!]
 
   """Logical OR on all given filters."""
-  OR: [WaitListItemSubscriptionWhereInput!]
+  OR: [WaitlistItemSubscriptionWhereInput!]
 
   """Logical NOT on all given filters combined by AND."""
-  NOT: [WaitListItemSubscriptionWhereInput!]
+  NOT: [WaitlistItemSubscriptionWhereInput!]
 
   """The subscription event gets dispatched when it's listed in mutation_in"""
   mutation_in: [MutationType!]
@@ -631,30 +745,30 @@ input WaitListItemSubscriptionWhereInput {
   The subscription event gets only dispatched when some of the field names included in this list have been updated
   """
   updatedFields_contains_some: [String!]
-  node: WaitListItemWhereInput
+  node: WaitlistItemWhereInput
 }
 
-input WaitListItemUpdateInput {
+input WaitlistItemUpdateInput {
   name: String
   partySize: Int
   phoneNumber: Int
 }
 
-input WaitListItemUpdateManyMutationInput {
+input WaitlistItemUpdateManyMutationInput {
   name: String
   partySize: Int
   phoneNumber: Int
 }
 
-input WaitListItemWhereInput {
+input WaitlistItemWhereInput {
   """Logical AND on all given filters."""
-  AND: [WaitListItemWhereInput!]
+  AND: [WaitlistItemWhereInput!]
 
   """Logical OR on all given filters."""
-  OR: [WaitListItemWhereInput!]
+  OR: [WaitlistItemWhereInput!]
 
   """Logical NOT on all given filters combined by AND."""
-  NOT: [WaitListItemWhereInput!]
+  NOT: [WaitlistItemWhereInput!]
   id: ID
 
   """All values that are not equal to given value."""
@@ -779,8 +893,52 @@ input WaitListItemWhereInput {
 
   """All values greater than or equal the given value."""
   phoneNumber_gte: Int
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+
+  """All values that are not equal to given value."""
+  updatedAt_not: DateTime
+
+  """All values that are contained in given list."""
+  updatedAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  updatedAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  updatedAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  updatedAt_lte: DateTime
+
+  """All values greater than the given value."""
+  updatedAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  updatedAt_gte: DateTime
 }
 
-input WaitListItemWhereUniqueInput {
+input WaitlistItemWhereUniqueInput {
   id: ID
 }
