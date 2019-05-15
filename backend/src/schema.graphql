@@ -1,14 +1,27 @@
 type User {
-  id: ID!
-  name: String!
+  id: ID! 
+  username: String!
+  password: String!
 }
 
-# placeholders below
+type MenuItem {
+  id: ID!
+  name: String!
+  cost: Int
+  inStock: Boolean
+}
+
+type WaitListItem {
+  id: ID! 
+  name: String!
+  partySize: Int!
+  phoneNumber: Int
+}
 
 type Mutation {
   hi: String
 }
 
 type Query {
-  hi: String
+  users: [User]!
 }
