@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 
 function ClientList() {
-  const [waitlist, setWaitlist] = useState([
+  const waitlist =[
     {
       id: 1,
       name: "Arthur",
@@ -20,7 +20,7 @@ function ClientList() {
       partySize: 2,
       phoneNumber: 7838383336
     }
-  ]);
+  ];
   const myId = 2;
   
   const getAhead = () => {

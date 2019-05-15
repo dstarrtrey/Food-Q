@@ -6,14 +6,12 @@ import ClientList from "./pages/ClientList";
 import Menu from "./pages/Menu";
 import OwnerList from './pages/OwnerList';
 import NoMatch from './pages/NoMatch';
-import Header from './components/Header';
 import Footer from './components/Footer';
 
 function App() {
   return (
     <Router>
       <div>
-        <Header />
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/login" component={Login} />
