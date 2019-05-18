@@ -1,0 +1,12 @@
+# import * from './generated/prisma.graphql'
+
+type Mutation {
+  createUser(username: String!, password: String!) : User!
+  createMenuItem(name: String!, cost: Int!, inStock: Boolean): MenuItem!
+}
+
+type Query {
+  users: [User]!
+  menuItems: [MenuItem]!
+  waitlistItems: [WaitlistItem]!
+}
