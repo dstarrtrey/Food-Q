@@ -1,4 +1,18 @@
 import React from 'react';
+import { Query } from 'react-apollo';
+import gql from 'graphql-tag';
+
+export const GET_WAITLIST_QUERY = gql`
+  query GET_WAITLIST_QUERY {
+    waitlistItems {
+      id
+      name
+      partySize
+      phoneNumber
+      createdAt
+    }
+  }
+`;
 
 function Waitlist() {
   const waitlist =[
@@ -23,20 +37,30 @@ function Waitlist() {
   ];
   const myId = 2;
   
-  const getAhead = () => {
-    const ids = waitlist.map(item => item.id);
+  const getAhead = arr => {
+    const ids = arr.map(item => item.id);
     return ids.length - ids.indexOf(myId) - 1;
   }
 
-  const getInFront = () => {
-    const ids = waitlist.map(item => item.id);
-    return waitlist[ids.indexOf(myId) + 1].partySize;
+  const getInFront = arr => {
+    const ids = arr.map(item => item.id);
+    return arr[ids.indexOf(myId) + 1].partySize;
   }
 
   return (
     <div>
-      <p>All parties ahead of you: <span>{getAhead()}</span></p>
-      <p>Party size in front of you: <span>{getInFront()}</span></p>
+      <Query query={GET_WAITLIST_QUERY}>
+        {(payload) => {
+          console.log(payload);
+          return (
+            <div>
+              {/* <p>{payload}</p> */}
+              {/* <p>All parties ahead of you: <span>{getAhead(payload)}</span></p> */}
+              {/* <p>Party size in front of you: <span>{getInFront(payload)}</span></p> */}
+            </div>
+          );
+        }}
+      </Query>
     </div>
   )
 }

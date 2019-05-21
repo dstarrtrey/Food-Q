@@ -19,7 +19,7 @@ type WaitlistItem {
   id: ID! @id
   name: String!
   partySize: Int!
-  phoneNumber: Int
+  phoneNumber: String
   createdAt: DateTime @createdAt
   updatedAt: DateTime @updatedAt
 }

@@ -19,6 +19,15 @@ const Mutation = {
 
     return newMenuItem;
   },
+  async createWaitlistItem(parent, args, ctx, info) {
+    const newWaitlistItem = await ctx.db.mutation.createWaitlistItem({
+      data: {
+        ...args,
+      },
+    }, info);
+
+    return newWaitlistItem;
+  },
 };
 
 module.exports = Mutation;
