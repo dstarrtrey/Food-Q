@@ -1,0 +1,18 @@
+.footer {
+    min-height: 10px;
+    background: #ffffff;
+    position: relative;
+    text-align: center;
+  }
+  
+  .footer {
+    font-family: 'Muli', sans-serif;
+    color: #e65337;
+    text-align: center;
+    position: relative;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-bottom: 10px;
+    background: rgb(255, 255, 255);
+  }
