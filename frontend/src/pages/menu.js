@@ -1,14 +1,8 @@
-import React, { useState } from "react";
-import styled from 'styled-components';
-import MenuItem from '../components/MenuItem';
-
-const StyledMenu = styled.div`
-  display: grid;
-  grid-template-columns: 1fr auto;
-  margin: 50px;
-`;
+import React from 'react';
+import MenuComponent from '../components/Menu';
 
 function Menu() {
+<<<<<<< HEAD
   const [menu, setMenu] = useState([
     { name: "Whole Piglet", price: 200 },
     { name: "Bird Nest Soup", price: 50 },
@@ -34,32 +28,12 @@ function Menu() {
   }
 
 
+=======
+>>>>>>> 84c1b23b3062164c8de70c984aff9d05ba8581f9
   return (
     <div>
-      <StyledMenu>
-        {menu.map(dish => (
-          <MenuItem key={dish.name} name={dish.name} price={dish.price} />
-        ))}
-      </StyledMenu>
-      <form onSubmit={addItem}>
-        <label htmlFor="name">Name</label>
-        <input
-          type="text"
-          name="name"
-          placeholder="Name"
-          value={name}
-          onChange={e => setName(e.target.value)}
-        />
-        <label htmlFor="price">Price</label>
-        <input
-          type="number"
-          name="price"
-          placeholder="Price"
-          value={price}
-          onChange={e => setPrice(e.target.value)}
-        />
-        <input type="submit" value="Add Item" />
-      </form>
+      <h1>Menu</h1>
+      <MenuComponent />
     </div>
   );
 }

@@ -3,6 +3,10 @@
 type Mutation {
   createUser(username: String!, password: String!) : User!
   createMenuItem(name: String!, cost: Int!, inStock: Boolean): MenuItem!
+<<<<<<< HEAD
+=======
+  createWaitlistItem(name: String!, partySize: Int!, phoneNumber: String): WaitlistItem!
+>>>>>>> 84c1b23b3062164c8de70c984aff9d05ba8581f9
 }
 
 type Query {

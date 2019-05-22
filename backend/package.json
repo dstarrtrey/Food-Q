@@ -22,7 +22,12 @@
     "nodemon": "^1.19.0",
     "npm-run-all": "^4.1.5",
     "prisma": "^1.33.0",
+<<<<<<< HEAD
     "prisma-binding": "^2.3.10"
+=======
+    "prisma-binding": "^2.3.10",
+    "validator": "^10.11.0"
+>>>>>>> 84c1b23b3062164c8de70c984aff9d05ba8581f9
   },
   "devDependencies": {
     "eslint": "^5.16.0",

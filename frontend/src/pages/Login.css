@@ -1,0 +1,35 @@
+.Login {
+    text-align: center;
+    min-height: 100vh;
+    background-image: linear-gradient(to right, #cb2d3e, #e65337);
+  }
+  
+  h1 {
+    margin-top: 100px;
+    font-size: 40px;
+    color: #fff;
+  } 
+  
+  img {
+    padding: 100px 0px 0px 80px;
+    justify-content: center;
+  }
+
+  .Username {
+    color: #fff;
+  }
+
+  .Password {
+    color: #fff;
+  }
+
+  .userform {
+    padding-top: 40px;
+    display: inline-block;
+  }
+
+ 
+  
+  .btn-info{
+    justify-content: center;
+  }

@@ -19,7 +19,11 @@ type WaitlistItem {
   id: ID! @id
   name: String!
   partySize: Int!
+<<<<<<< HEAD
   phoneNumber: Int
+=======
+  phoneNumber: String
+>>>>>>> 84c1b23b3062164c8de70c984aff9d05ba8581f9
   createdAt: DateTime @createdAt
   updatedAt: DateTime @updatedAt
 }

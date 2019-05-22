@@ -1,6 +1,8 @@
-import React from "react";
+import React from 'react';
+import Waitlist from '../components/Waitlist'
 
 function ClientList() {
+<<<<<<< HEAD
   const waitlist =[
     {
       id: 1,
@@ -40,6 +42,14 @@ function ClientList() {
       <p>Party size in front of you: <span>{getInFront()}</span></p>
     </div>
   )
+=======
+  return (
+    <div>
+      <h1>ClientList</h1>
+      <Waitlist />
+    </div>
+  );
+>>>>>>> 84c1b23b3062164c8de70c984aff9d05ba8581f9
 }
 
 export default ClientList;
