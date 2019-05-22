@@ -1,5 +1,5 @@
 # source: https://us1.prisma.sh/david-l-starr-b3bc24/FoodQ/dev
-# timestamp: Wed May 15 2019 14:26:54 GMT-0800 (GMT-08:00)
+# timestamp: Tue May 21 2019 12:26:16 GMT-0800 (GMT-08:00)
 
 type AggregateMenuItem {
   count: Int!
@@ -656,7 +656,7 @@ type WaitlistItem implements Node {
   id: ID!
   name: String!
   partySize: Int!
-  phoneNumber: Int
+  phoneNumber: String
   createdAt: DateTime
   updatedAt: DateTime
 }
@@ -675,7 +675,7 @@ input WaitlistItemCreateInput {
   id: ID
   name: String!
   partySize: Int!
-  phoneNumber: Int
+  phoneNumber: String
 }
 
 """An edge in a connection."""
@@ -706,7 +706,7 @@ type WaitlistItemPreviousValues {
   id: ID!
   name: String!
   partySize: Int!
-  phoneNumber: Int
+  phoneNumber: String
   createdAt: DateTime
   updatedAt: DateTime
 }
@@ -751,13 +751,13 @@ input WaitlistItemSubscriptionWhereInput {
 input WaitlistItemUpdateInput {
   name: String
   partySize: Int
-  phoneNumber: Int
+  phoneNumber: String
 }
 
 input WaitlistItemUpdateManyMutationInput {
   name: String
   partySize: Int
-  phoneNumber: Int
+  phoneNumber: String
 }
 
 input WaitlistItemWhereInput {
@@ -871,28 +871,46 @@ input WaitlistItemWhereInput {
 
   """All values greater than or equal the given value."""
   partySize_gte: Int
-  phoneNumber: Int
+  phoneNumber: String
 
   """All values that are not equal to given value."""
-  phoneNumber_not: Int
+  phoneNumber_not: String
 
   """All values that are contained in given list."""
-  phoneNumber_in: [Int!]
+  phoneNumber_in: [String!]
 
   """All values that are not contained in given list."""
-  phoneNumber_not_in: [Int!]
+  phoneNumber_not_in: [String!]
 
   """All values less than the given value."""
-  phoneNumber_lt: Int
+  phoneNumber_lt: String
 
   """All values less than or equal the given value."""
-  phoneNumber_lte: Int
+  phoneNumber_lte: String
 
   """All values greater than the given value."""
-  phoneNumber_gt: Int
+  phoneNumber_gt: String
 
   """All values greater than or equal the given value."""
-  phoneNumber_gte: Int
+  phoneNumber_gte: String
+
+  """All values containing the given string."""
+  phoneNumber_contains: String
+
+  """All values not containing the given string."""
+  phoneNumber_not_contains: String
+
+  """All values starting with the given string."""
+  phoneNumber_starts_with: String
+
+  """All values not starting with the given string."""
+  phoneNumber_not_starts_with: String
+
+  """All values ending with the given string."""
+  phoneNumber_ends_with: String
+
+  """All values not ending with the given string."""
+  phoneNumber_not_ends_with: String
   createdAt: DateTime
 
   """All values that are not equal to given value."""
