@@ -15,7 +15,7 @@ function createServer() {
     resolvers: {
       Mutation,
       Query,
-      Subscription
+      Subscription,
     },
     resolverValidationOptions: {
       requireResolversForResolveType: false,

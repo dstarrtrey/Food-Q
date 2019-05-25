@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Query, Mutation } from 'react-apollo';
+import { Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
 
 // TODO: Write graphql query with apollo to send data from form to database
@@ -18,6 +18,10 @@ export const ADD_WAITLIST_ITEM_MUTATION = gql`
     )
     {
       id
+      name
+      partySize
+      phoneNumber
+      createdAt
     }
   } 
 `;
@@ -44,8 +48,7 @@ class AddWaitlistItem extends Component {
         {(createWaitlistItem, { loading, error }) => (
           <form onSubmit={async event => {
             event.preventDefault();
-            const res = await createWaitlistItem();
-            console.log(res);
+            return await createWaitlistItem();
           }}>
             <fieldset disabled={loading}>
               <input

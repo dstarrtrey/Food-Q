@@ -3,13 +3,12 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import { HttpLink } from 'apollo-link-http';
 import { onError } from 'apollo-link-error';
 import { ApolloLink, Observable } from 'apollo-link';
-import { SubscriptionClient } from "subscriptions-transport-ws";
 import { WebSocketLink } from 'apollo-link-ws';
 import { split } from 'apollo-link';
 import { getMainDefinition } from 'apollo-utilities';
 
 // Sets up Apollo client to manage caching and graphql queries/mutations
-const BACKEND_ENDPOINT = 'ws://localhost:4000';
+const BACKEND_ENDPOINT = 'localhost:4000';
 
 const request = operation => {
   operation.setContext({
@@ -19,32 +18,32 @@ const request = operation => {
   });
 }
 
-const requestLink = new ApolloLink((operation, forward) =>
-  new Observable(observer => {
-    let handle;
-    Promise.resolve(operation)
-      .then(oper => request(oper))
-      .then(() => {
-        handle = forward(operation).subscribe({
-          next: observer.next.bind(observer),
-          error: observer.error.bind(observer),
-          complete: observer.complete.bind(observer),
-        });
-      })
-      .catch(observer.error.bind(observer));
+// const requestLink = new ApolloLink((operation, forward) =>
+//   new Observable(observer => {
+//     let handle;
+//     Promise.resolve(operation)
+//       .then(oper => request(oper))
+//       .then(() => {
+//         handle = forward(operation).subscribe({
+//           next: observer.next.bind(observer),
+//           error: observer.error.bind(observer),
+//           complete: observer.complete.bind(observer),
+//         });
+//       })
+//       .catch(observer.error.bind(observer));
 
-    return () => {
-      if (handle) handle.unsubscribe();
-    };
-  })
-);
+//     return () => {
+//       if (handle) handle.unsubscribe();
+//     };
+//   })
+// );
 const httpLink = new HttpLink({
-  uri: process.env.NODE_ENV === 'development' ? BACKEND_ENDPOINT : BACKEND_ENDPOINT,
+  uri: process.env.NODE_ENV === 'development' ? `http://${BACKEND_ENDPOINT}` : `http://${BACKEND_ENDPOINT}`,
   credentials: 'include'
 })
 
 const wsLink = new WebSocketLink({
-  uri: `ws://localhost:4000/`,
+  uri: `ws://${BACKEND_ENDPOINT}`,
   options: {
     reconnect: true
   }
@@ -65,20 +64,21 @@ const link = split(
   httpLink,
 );
 
+// : ApolloLink.from([
+//   onError(({ graphQLErrors, networkError }) => {
+//     if (graphQLErrors)
+//       graphQLErrors.map(({ message, locations, path }) =>
+//         console.log(
+//           `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`,
+//         ),
+//       );
+//     if (networkError) console.log(`[Network error]: ${networkError}`);
+//   }),
+//   requestLink,
+//   link
+// ])
 const client = new ApolloClient({
-  link: ApolloLink.from([
-    onError(({ graphQLErrors, networkError }) => {
-      if (graphQLErrors)
-        graphQLErrors.map(({ message, locations, path }) =>
-          console.log(
-            `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`,
-          ),
-        );
-      if (networkError) console.log(`[Network error]: ${networkError}`);
-    }),
-    requestLink,
-    link
-  ]),
+  link,
   cache: new InMemoryCache(),
   connectToDevTools: true
 });

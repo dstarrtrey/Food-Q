@@ -58,13 +58,18 @@ const ShowWaitlistItems = () => {
               </StyledGrid>
             ))}
             <Subscription subscription={WAITLIST_SUBSCRIPTION}>
-              {({ data: { newWaitlistItem }, loading }) => !loading && (
-                <StyledGrid key={newWaitlistItem.id}>
-                  <div>{newWaitlistItem.name}</div>
-                  <div>{newWaitlistItem.partySize}</div>
-                  <div>{formatPhoneNumber(newWaitlistItem.phoneNumber)}</div>
-                </StyledGrid>
-              )}
+              {({ data, loading }) => {
+                console.log(loading, data);
+                if (loading) return null;
+                const item = data.newWaitlistItem;
+                return item ? (
+                  <StyledGrid key={item.id}>
+                    <div>{item.name}</div>
+                    <div>{item.partySize}</div>
+                    <div>{formatPhoneNumber(item.phoneNumber)}</div>
+                  </StyledGrid>
+                ) : null;
+              }}
             </Subscription>
           </>
         )

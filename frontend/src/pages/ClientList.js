@@ -42,7 +42,7 @@ function ClientList() {
 
  //styling
   return (
-    <div class="clientbanner">
+    <div className="clientbanner">
     <Container fluid>
     <Col size="md-12 lrg-12">
     <Jumbotron>
