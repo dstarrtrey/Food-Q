@@ -1,3 +1,5 @@
+const { PUBSUB_NEW_WAITLIST_ITEM } = require('../shared/constants');
+
 const Mutation = {
   async createUser(parent, args, ctx, info) {
     // TO DO Check if logged in
@@ -20,12 +22,15 @@ const Mutation = {
     return newMenuItem;
   },
   async createWaitlistItem(parent, args, ctx, info) {
-    const newWaitlistItem = await ctx.db.mutation.createWaitlistItem({
+    const { db, pubsub } = ctx;
+    const newWaitlistItem = await db.mutation.createWaitlistItem({
       data: {
         ...args,
       },
     }, info);
-
+    pubsub.publish(PUBSUB_NEW_WAITLIST_ITEM, {
+      newWaitlistItem,
+    });
     return newWaitlistItem;
   },
 };
