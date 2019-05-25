@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Query, Subscription } from 'react-apollo';
 import gql from 'graphql-tag';
 import styled from 'styled-components';
+import isEqual from 'lodash/isEqual';
 import { formatPhoneNumber } from '../helperFunctions';
 
 export const GET_WAITLIST_QUERY = gql`
@@ -36,7 +37,15 @@ const StyledGrid = styled.div`
   }
 `;
 
+  // TODO: Use state to append new additions 
+
 const ShowWaitlistItems = () => {
+  const [ newAdditions, setNewAdditions ] = useState([]);
+
+  const handleNewItem = item => {
+    console.log("adding item...", item)
+    setNewAdditions([...newAdditions, item]);
+  }
   return (
     <Query query={GET_WAITLIST_QUERY}>
       {({ loading, error, data}) => {
@@ -61,16 +70,19 @@ const ShowWaitlistItems = () => {
               {({ data, loading }) => {
                 console.log(loading, data);
                 if (loading) return null;
-                const item = data.newWaitlistItem;
-                return item ? (
-                  <StyledGrid key={item.id}>
-                    <div>{item.name}</div>
-                    <div>{item.partySize}</div>
-                    <div>{formatPhoneNumber(item.phoneNumber)}</div>
-                  </StyledGrid>
-                ) : null;
+                if (!loading && !isEqual(newAdditions[newAdditions.length - 1], data.newWaitlistItem)){
+                  handleNewItem(data.newWaitlistItem);
+                }
+                return null;
               }}
             </Subscription>
+            {newAdditions.length ? newAdditions.map(item => (
+              <StyledGrid key={item.id}>
+                <div>{item.name}</div>
+                <div>{item.partySize}</div>
+                <div>{formatPhoneNumber(item.phoneNumber)}</div>
+              </StyledGrid>
+            )): null}
           </>
         )
       }}

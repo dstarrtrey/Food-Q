@@ -26,7 +26,7 @@ function App() {
             <Route component={NoMatch} />
           </Switch>
           <Footer />
-          {/* Placeholder for ease in navigating */}
+          {/* Placeholder links for ease in navigating */}
           <span>
             <Link to="/">Home</Link>
             <Link to="/Login">Login</Link>
