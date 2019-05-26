@@ -2,15 +2,18 @@
 
 type Query {
   users: [User]!
+  user(where: UserWhereUniqueInput!): User!
   menuItems: [MenuItem]!
   waitlistItems: [WaitlistItem]!
+  isLoggedIn: Boolean!
 }
 
 type Mutation {
-  createUser(username: String!, password: String!) : User!
   createMenuItem(name: String!, cost: Int!, inStock: Boolean): MenuItem!
   createWaitlistItem(name: String!, partySize: Int!, phoneNumber: String): WaitlistItem!
   removeWaitlistItem(id: ID!): WaitlistItem!
+  createUser(username: String!, password: String!) : User!
+  login(username: String!, password: String!): Boolean!
 }
 
 type Subscription {
