@@ -1,29 +1,17 @@
+const bcrypt = require('bcryptjs');
 const { PUBSUB_NEW_WAITLIST_ITEM } = require('../shared/constants');
 
 const Mutation = {
-  async createUser(parent, args, ctx, info) {
-    // TO DO Check if logged in
-
-    const newUser = await ctx.db.mutation.createUser({
-      data: {
-        ...args,
-      },
-    }, info);
-
-    return newUser;
-  },
   async createMenuItem(parent, args, ctx, info) {
     const newMenuItem = await ctx.db.mutation.createMenuItem({
       data: {
         ...args,
       },
     }, info);
-
     return newMenuItem;
   },
-  async createWaitlistItem(parent, args, ctx, info) {
-    const { db, pubsub } = ctx;
 
+  async createWaitlistItem(parent, args, { db, pubsub }, info) {
     const newWaitlistItem = await db.mutation.createWaitlistItem({
       data: {
         ...args,
@@ -34,9 +22,8 @@ const Mutation = {
     });
     return newWaitlistItem;
   },
-  async removeWaitlistItem(parent, args, ctx, info) {
-    const { db, pubsub } = ctx;
 
+  async removeWaitlistItem(parent, args, { db, pubsub }, info) {
     const deletedItem = await db.mutation.deleteWaitlistItem({
       where: {
         ...args,
@@ -45,8 +32,41 @@ const Mutation = {
     pubsub.publish(PUBSUB_NEW_WAITLIST_ITEM, {
       deletedItem,
     });
-
     return deletedItem;
+  },
+
+  async createUser(parent, { username, password }, { db }, info) {
+    const userExists = await db.exists.User({
+      username,
+    });
+    if (userExists) {
+      throw new Error('Another user with same username exists.');
+    } else {
+      const newUser = await db.mutation.createUser({
+        data: {
+          username,
+          password: await bcrypt.hashSync(password, 10),
+        },
+      }, info);
+      return newUser;
+    }
+  },
+  async login(parent, { username, password }, { request, db }) {
+    const user = await db.query.user({
+      where: {
+        username,
+      },
+    });
+    if (user) {
+      if (await bcrypt.compareSync(password, user.password)) {
+        request.session.user = {
+          ...user,
+        };
+        return true;
+      }
+      throw new Error('Incorrect password.');
+    }
+    throw new Error('No Such User exists.');
   },
 };
 
