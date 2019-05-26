@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import { Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
 
-// TODO: Write graphql query with apollo to send data from form to database
-// TODO: Set up gql subscription so waitlist automatically updates cross-platform
-
 export const ADD_WAITLIST_ITEM_MUTATION = gql`
   mutation ADD_WAITLIST_ITEM_MUTATION(
     $name: String!
@@ -41,14 +38,21 @@ class AddWaitlistItem extends Component {
       [name] : val 
     });
   }
-
+  resetState = () => {
+    this.setState({
+      name: "",
+      partySize: 0,
+      phoneNumber: "",
+    });
+  }
   render() {
     return (
       <Mutation mutation={ADD_WAITLIST_ITEM_MUTATION} variables={this.state}>
         {(createWaitlistItem, { loading, error }) => (
           <form onSubmit={async event => {
             event.preventDefault();
-            return await createWaitlistItem();
+            this.props.addItem({...this.state, id: null});
+            return await createWaitlistItem() && this.resetState();
           }}>
             <fieldset disabled={loading}>
               <input

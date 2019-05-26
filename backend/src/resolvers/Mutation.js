@@ -23,6 +23,7 @@ const Mutation = {
   },
   async createWaitlistItem(parent, args, ctx, info) {
     const { db, pubsub } = ctx;
+
     const newWaitlistItem = await db.mutation.createWaitlistItem({
       data: {
         ...args,
@@ -32,6 +33,20 @@ const Mutation = {
       newWaitlistItem,
     });
     return newWaitlistItem;
+  },
+  async removeWaitlistItem(parent, args, ctx, info) {
+    const { db, pubsub } = ctx;
+
+    const deletedItem = await db.mutation.deleteWaitlistItem({
+      where: {
+        ...args,
+      },
+    }, info);
+    pubsub.publish(PUBSUB_NEW_WAITLIST_ITEM, {
+      deletedItem,
+    });
+
+    return deletedItem;
   },
 };
 

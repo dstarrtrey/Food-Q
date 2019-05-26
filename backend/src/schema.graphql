@@ -10,8 +10,10 @@ type Mutation {
   createUser(username: String!, password: String!) : User!
   createMenuItem(name: String!, cost: Int!, inStock: Boolean): MenuItem!
   createWaitlistItem(name: String!, partySize: Int!, phoneNumber: String): WaitlistItem!
+  removeWaitlistItem(id: ID!): WaitlistItem!
 }
 
 type Subscription {
   newWaitlistItem: WaitlistItem!
+  waitlistItem(where: WaitlistItemSubscriptionWhereInput): WaitlistItemSubscriptionPayload!
 }

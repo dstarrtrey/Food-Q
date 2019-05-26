@@ -12,12 +12,12 @@ function Login() {
     <Container> 
     <Row> 
       <Col size="md-12 lrg-12">
-       <form class="userform">
-          <p class="Username">Username</p>
+       <form className="userform">
+          <p className="Username">Username</p>
            <Input name="Login" placeholder="Login" />
-            <p class="Password">password</p>
+            <p className="Password">password</p>
            <Input name="TypePassword" placeholder="Password" />
-           <Link to="/OwnerList"><FormBtn class="loginbtn">Log In</FormBtn></Link>
+           <Link to="/OwnerList"><FormBtn className="loginbtn">Log In</FormBtn></Link>
            </form>
     </Col>
     </Row>
