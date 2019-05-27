@@ -1,9 +1,12 @@
 import React, { useState } from "react";
+import "./AdminList.css";
 import gql from 'graphql-tag';
 import { Query, Subscription } from 'react-apollo';
 import { last, remove, isEqual, some }  from 'lodash';
 import AddWaitlistItem from '../components/AddWaitlistItem';
-import ShowWaitlistItems from '../components/ShowWaitlistItems'
+import ShowWaitlistItems from '../components/ShowWaitlistItems';
+import { Col, Row, Container } from "../components/Grid";
+import { Input, TextArea, FormBtn } from "../components/Form";
 
 export const GET_WAITLIST_QUERY = gql`
   query GET_WAITLIST_QUERY {
@@ -50,16 +53,29 @@ function AdminList() {
   const addItem = item => {
     setWaitlist([...waitlist, item]);
   }
+
+
   return (
     <>
-      <h1>AdminList</h1>
+     <div className="styledAdmin">
+     <Container>
+     <Row>
+     <Col size="md-12 lrg-12">
+      <h1 className="adminList">your customers</h1>
+      <hr></hr>
+      </Col>
+      </Row>
+      </Container>
       <Query query={GET_WAITLIST_QUERY}>
       {({ loading, error, data}) => {
         if (loading) return "Loading...";
         if (error) return `Error! ${error.message}`;
         !waitlist.length && setWaitlist([...data.waitlistItems]);
+       
         return (
+        
           <>
+        
             <ShowWaitlistItems
               waitlist={waitlist}
               removeItem={removeItem}
@@ -97,6 +113,7 @@ function AdminList() {
       }}
       </Query>
       <AddWaitlistItem addItem={addItem} />
+      </div>
     </>
   );
 

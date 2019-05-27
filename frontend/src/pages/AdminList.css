@@ -1,0 +1,27 @@
+/* page layout start */
+.styledAdmin {
+    text-align: center;
+    min-height: 100vh;
+    background-image: linear-gradient(to right, #cb2d3e, #e65337);
+    padding-top: 100px;
+  }
+  /* page layout end */
+
+.adminList {
+  font-family: 'Poppins', sans-serif;
+  font-size: 60px;
+  color: #fff;
+  padding-bottom: 30px;
+}  
+hr {
+    height:2px; 
+    border:none; 
+    color: #e2d079; 
+    background-color: #e2d079;
+  }
+
+form {
+    padding: 3
+    0px;
+    margin: 10px;
+}
