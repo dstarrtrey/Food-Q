@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 function Login() {
   return (
     <>
-    <div className="Login">
+    <div className="loginStyle">
      <img src="images/foodqlogo.png" alt="foodq logo"></img>
     <Container> 
     <Row> 

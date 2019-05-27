@@ -3,10 +3,10 @@ import gql from 'graphql-tag';
 import { Query, Subscription } from 'react-apollo';
 import { remove, some, last, isEqual } from 'lodash';
 import "./ClientList.css";
-import Jumbotron from "../components/Jumbotron";
 import { Col, Row, Container } from "../components/Grid";
 import { Input, TextArea, FormBtn } from "../components/Form";
 import LoadingBar from '../components/LoadingBar';
+import Card from 'react-bootstrap/Card'
 export const GET_WAITLIST_IDS_QUERY = gql`
   query GET_WAITLIST_IDS_QUERY {
     waitlistItems {
@@ -96,20 +96,14 @@ function ClientList() {
     return index > 0 ? list[ids.indexOf(myId) - 1].partySize : 'N/A';
   }
 
- //styling
+ //begin client waitlist cards
   return (
-    <div className="clientbanner">
-    <Container fluid>
-    <Col size="md-12 lrg-12">
-    <Jumbotron>
-           <h2>Banner Image / Animated SVG here</h2>
-         </Jumbotron>
-    </Col>    
-    </Container>
+    <div className="clientSection">
     <Container> 
-     <Row class="clientwaitlist">
-     <Col size="md-6 lrg-6">
-     <h1>ClientList</h1>
+     <Row>
+     <Col size="md-12 lrg-12">
+     <h1 class="clientListWait">Wait Times</h1>
+     <hr class="clientHr"></hr>
      <Query query={GET_WAITLIST_IDS_QUERY}>
        {({ loading, error, data}) => {
           if (loading) return "Loading...";
@@ -132,30 +126,63 @@ function ClientList() {
                   if (loading) return "Loading...";
                   if (error) return `Error! ${error.message}`;
                   const { name, partySize } = data.waitlistItem;
-                  return <p><b>Your party</b>: {name}, party of {partySize}</p>
+                  return <div>
+                  <Row>
+                  <Col size="md-12 lrg-12">
+                  <Card style={{ textAlign: 'center' }}> 
+                  <Card.Header>Your Party</Card.Header>
+                  <Card.Body>
+                  <Card.Title>Some statement here or image</Card.Title> 
+                  <Card.Text>
+                    <p>{name} , Party of {partySize}</p>
+                  </Card.Text>
+                  </Card.Body>
+                  </Card> 
+                  </Col>
+                  </Row>
+                  </div>
                 }}
+        
               </Query>
-              <p><b>Parties ahead of you:</b> <span>{getAhead(waitlist)}</span></p>
-              <p><b>Party size in front of you:</b> <span>{getInFront(waitlist)}</span></p>
+              <div class="partyInfo">
+              <Row>
+              <Col size="md-6 lrg-6"> 
+              <Card style={{ textAlign: 'center' }}> 
+              <Card.Header>Parties Ahead of You</Card.Header>
+              <Card.Body>
+              <Card.Title>Some statement here or image</Card.Title> 
+              <Card.Text>
+              <p><span>{getAhead(waitlist)}</span></p>
+              </Card.Text>
+              </Card.Body>
+              </Card>
+              </Col>
+
+              <Col size="md-6 lrg-6">
+              <Card style={{ textAlign: 'center' }}> 
+              <Card.Header>Party Size in Front</Card.Header>
+              <Card.Body>
+              <Card.Title>Some statement here or image</Card.Title>  
+              <Card.Text>
+                <p><span>{getInFront(waitlist)}</span></p></Card.Text>
+              </Card.Body>
+              </Card>
+              </Col>
+
               <Subscription subscription={CLIENT_WAITLIST_SUBSCRIPTION}>
                 {subscriptionFunction}
               </Subscription>
+              </Row>
+              </div>
             </>
           )
        }}
      </Query>
       </Col>  
-       <Col size="md-6 lrg-6">
-         <form>
-           <Input name="name" placeholder="Name (required)" />
-           <Input name="Party Size" placeholder="Party Size (required)" />
-           <TextArea name="specialrequest" placeholder="Specific seating needs or special occasion?" />
-           <FormBtn>Book Reservation</FormBtn>
-         </form>
-       </Col>
-     </Row>
-   </Container>
-   </div>
+      </Row>
+  </Container>
+      </div>
+      
 
   );
 }
