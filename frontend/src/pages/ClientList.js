@@ -6,6 +6,7 @@ import "./ClientList.css";
 import Jumbotron from "../components/Jumbotron";
 import { Col, Row, Container } from "../components/Grid";
 import { Input, TextArea, FormBtn } from "../components/Form";
+import Card from 'react-bootstrap/Card'
 import { subscriptionFunction } from '../helperFunctions';
 export const GET_WAITLIST_IDS_QUERY = gql`
   query GET_WAITLIST_IDS_QUERY {
@@ -94,13 +95,6 @@ function ClientList() {
  //styling
   return (
     <div className="clientbanner">
-    <Container fluid>
-    <Col size="md-12 lrg-12">
-    <Jumbotron>
-           <h2>Banner Image / Animated SVG here</h2>
-         </Jumbotron>
-    </Col>    
-    </Container>
     <Container> 
      <Row class="clientwaitlist">
      <Col size="md-6 lrg-6">
@@ -125,23 +119,56 @@ function ClientList() {
               <Subscription subscription={CLIENT_WAITLIST_SUBSCRIPTION}>
                 {subscriptionFunction}
               </Subscription>
+            
             </>
+          
           )
        }}
      </Query>
       </Col>  
-       <Col size="md-6 lrg-6">
-         <form>
-           <Input name="name" placeholder="Name (required)" />
-           <Input name="Party Size" placeholder="Party Size (required)" />
-           <TextArea name="specialrequest" placeholder="Specific seating needs or special occasion?" />
-           <FormBtn>Book Reservation</FormBtn>
-         </form>
+    
+      <div class="partyInfo">
+      <Container>
+       <Row>
+       <Col size="md-4 lrg-4">
+       <Card border="light" style={{ width: '20rem' }}>
+      <Card.Header>Name</Card.Header>
+      <Card.Body>
+      <Card.Title>Party of</Card.Title>
+      <Card.Text># of Party Size</Card.Text>
+      </Card.Body>
+      </Card>
+      <br />
        </Col>
-     </Row>
-   </Container>
-   </div>
-
+       <Col size="md-4 lrg-4">
+      <Card border="light" style={{ width: '20rem' }}>
+      <Card.Header>Parties Ahead of You</Card.Header>
+      <Card.Body>
+      <Card.Title>You'll be Seated Soon</Card.Title>
+      <Card.Text># of Seats Before Here</Card.Text>
+      </Card.Body>
+      </Card>
+      <br />
+       </Col>
+       <Col size="md-4 lrg-4">
+       <Card border="light" style={{ width: '20rem' }}>
+      <Card.Header>Wait Time Left</Card.Header>
+      <Card.Body>
+      <Card.Title>Almost there!</Card.Title>
+      <Card.Text>
+        Time Remaining Here
+      </Card.Text>
+    </Card.Body>
+  </Card>
+  <br />
+       </Col>
+       </Row>
+       </Container>
+       </div>
+       </Row>
+       </Container>
+       </div>
+       
   );
 }
 

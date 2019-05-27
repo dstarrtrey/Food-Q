@@ -28,7 +28,7 @@ function Home() {
           <p>RATINGS - <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></p>
           <hr></hr>
           <p><i class="fas fa-clock"></i> AVERAGE WAIT TIME - 30 minutes</p>
-          <Link to="/ClientList"><Button type="submit">Book!</Button>
+          <Link to="/Menu"><Button type="submit">Browse Menu</Button>
           </Link>
           </Col>
         </Row>
