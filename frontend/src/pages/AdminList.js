@@ -41,6 +41,36 @@ export const WAITLIST_SUBSCRIPTION = gql`
 function AdminList() {
   const [ waitlist, setWaitlist ] = useState([]);
 
+  // Will automatically generate updates for waitlist in Subscription component
+  const subscriptionFunction = ({ data, loading }) => {
+    if (loading) return null;
+    const {mutation, node, previousValues} = data.waitlistItem;
+    switch (mutation) {
+      case "CREATED":
+        if (some(waitlist, ['id', node.id])) return null;
+        if (last(waitlist).id === null) {
+          const list = [...waitlist];
+          list[list.length - 1] = {...node};
+          setWaitlist([...list]);
+        } else if (!isEqual(node, last(waitlist))) {
+          setWaitlist([...waitlist, node]);
+        }
+        break;
+      case "DELETED":
+        if (!some(waitlist, ['id', previousValues.id])) return null;
+        const list = [...waitlist];
+        remove(list, item => item.id === previousValues.id);
+        setWaitlist([...list]);
+        break;
+      default:
+        console.error(mutation, node, previousValues);
+        break;
+    }
+    return null;
+  }
+
+  // The two methods below are passed into the form and delete components for 
+  // instant rerendering on user side while the db processes request.
   const removeItem = id => {
     const list = [...waitlist];
     remove(list, item => item.id === id);
@@ -65,32 +95,7 @@ function AdminList() {
               removeItem={removeItem}
             />
             <Subscription subscription={WAITLIST_SUBSCRIPTION}>
-              {({ data, loading }) => {
-                if (loading) return null;
-                const {mutation, node, previousValues} = data.waitlistItem;
-                switch (mutation) {
-                  case "CREATED":
-                    if (some(waitlist, ['id', node.id])) return null;
-                    if (last(waitlist).id === null) {
-                      const list = [...waitlist];
-                      list[list.length - 1] = {...node};
-                      setWaitlist([...list]);
-                    } else if (!isEqual(node, last(waitlist))) {
-                      setWaitlist([...waitlist, node]);
-                    }
-                    break;
-                  case "DELETED":
-                    if (!some(waitlist, ['id', previousValues.id])) return null;
-                    const list = [...waitlist];
-                    remove(list, item => item.id === previousValues.id);
-                    setWaitlist([...list]);
-                    break;
-                  default:
-                    console.error(mutation, node, previousValues);
-                    break;
-                }
-                return null;
-              }}
+              {subscriptionFunction}
             </Subscription>
           </>
         );

@@ -56,7 +56,7 @@ function Login() {
       <Col size="md-4 lrg-4">
       <img class="iconimages" src="images/like_icon.png" alt="foodq logo"></img>
       <h2>review</h2>
-      <p>Your restauraunt and teams feedback is important. 
+      <p>Your restauraunt and team's feedback is important. 
         Let us know how we are doing, and leave suggestions!</p>
       </Col>
     </Row>

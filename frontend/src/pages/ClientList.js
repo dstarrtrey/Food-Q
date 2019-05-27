@@ -6,7 +6,7 @@ import "./ClientList.css";
 import Jumbotron from "../components/Jumbotron";
 import { Col, Row, Container } from "../components/Grid";
 import { Input, TextArea, FormBtn } from "../components/Form";
-import { subscriptionFunction } from '../helperFunctions';
+import LoadingBar from '../components/LoadingBar';
 export const GET_WAITLIST_IDS_QUERY = gql`
   query GET_WAITLIST_IDS_QUERY {
     waitlistItems {
@@ -49,8 +49,13 @@ export const MY_PARTY_QUERY = gql`
 
 function ClientList() {
   const [ waitlist, setWaitlist ] = useState([]);
+  const [ starts, setStarts ] = useState({
+    startingLength: 0,
+  })
   // TODO: replace myId with whatever URL parameter is
-  const myId = 'cjw4f6oao1yig0b12xv0rmhe7';
+  // TODO: Make a loading bar!
+  
+  const myId = 'cjw6z3w8xl0nc0b42o92j02au';
   
   // Will automatically generate updates for waitlist in Subscription component
   const subscriptionFunction = ({ data, loading}) => {
@@ -109,9 +114,19 @@ function ClientList() {
        {({ loading, error, data}) => {
           if (loading) return "Loading...";
           if (error) return `Error! ${error.message}`;
-          !waitlist.length && setWaitlist([...data.waitlistItems]);
+          if (!waitlist.length) {
+            setWaitlist([...data.waitlistItems]);
+            const start = getAhead(data.waitlistItems);
+            setStarts({
+              startingLength: start + 1,
+            });
+          }
           return (
             <>
+              <LoadingBar
+                starts={starts}
+                index={getAhead(waitlist)}
+              />
               <Query query={MY_PARTY_QUERY} variables={{id: myId}}>
                 {({ loading, error, data }) => {
                   if (loading) return "Loading...";
