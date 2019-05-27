@@ -1,19 +1,15 @@
-.footer {
+/* .footer {
     min-height: 10px;
-    background: #ffffff;
     position: relative;
     text-align: center;
-  }
+  } */
   
   .footer {
     font-family: 'Muli', sans-serif;
-    color: #e65337;
+    color: #fff;
     text-align: center;
     position: relative;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    background: rgb(255, 255, 255);
+    padding: 30px 0px 30px 0px;
+  
+    background-image: linear-gradient(to right, #cb2d3e, #e65337);
   }

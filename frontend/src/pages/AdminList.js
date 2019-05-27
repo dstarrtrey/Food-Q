@@ -143,20 +143,20 @@ function AdminList() {
             <tr>
               <td>David</td>
               <td>4</td>
-              <td>408)897-0098</td>
+              <td>(408) 897-0098</td>
               <td><Button>Seated</Button></td>
             </tr>
             <tr>
               <td>Michael</td>
               <td>3</td>
-              <td>(415)457-2914</td>
-              <td><Button>Seated</Button></td>
+              <td>(415) 457-2914</td>
+              <td><Button>Seat</Button></td>
             </tr>
             <tr>
               <td>Rachel</td>
               <td>2</td>
-              <td>(510)386-2954</td>
-              <td><Button>Seated</Button></td>
+              <td>(510) 386-2954</td>
+              <td><Button>Seat</Button></td>
             </tr>
           </tbody>
           </Table>
