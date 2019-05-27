@@ -1,4 +1,4 @@
-
+const db = 'db';
 // eslint-disable-next-line func-names
 module.exports = function (app) {
   // /logger is where the login info is entered

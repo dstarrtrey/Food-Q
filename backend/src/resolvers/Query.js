@@ -5,6 +5,7 @@ const Query = {
   menuItems: forwardTo('db'),
   waitlistItems: forwardTo('db'),
   user: forwardTo('db'),
+  waitlistItem: forwardTo('db'),
   isLoggedIn: (parent, args, { req }) => typeof req.session.user !== 'undefined',
 };
 
