@@ -3,21 +3,18 @@ import "./AdminList.css";
 import gql from 'graphql-tag';
 import { Query, Subscription } from 'react-apollo';
 import { last, remove, isEqual, some }  from 'lodash';
-import AddWaitlistItem from '../components/AddWaitlistItem';
+import AddWaitlistItem from '../components/Wrapper/AddWaitlistItem';
 import ShowWaitlistItems from '../components/ShowWaitlistItems';
 import { Col, Row, Container } from "../components/Grid";
-// import { Input, TextArea, FormBtn } from "../components/Form";
 import Table from 'react-bootstrap/Table';
-import Button from 'react-bootstrap/Button';
-// import { FormBtn } from "../components/Form";
-import Form from 'react-bootstrap/Form';
+
 
 
 
 export const GET_WAITLIST_QUERY = gql`
   query GET_WAITLIST_QUERY {
     waitlistItems {
-      id
+      id 
       name
       partySize
       phoneNumber
@@ -68,11 +65,8 @@ function AdminList() {
      <Container>
      <Row>
      <Col size="md-12 lrg-12">
-     {/* <img src="images/newclock.gif" alt="spinning timer"></img> */}
-     
-     
-      <h1 className="adminList">your customers</h1>
-      {/* <hr></hr> */}
+      <h1 className="adminList">Customers Waiting</h1>
+      <hr></hr>
       </Col>
       </Row>
       </Container>
@@ -85,12 +79,21 @@ function AdminList() {
        
         return (
         
-          <>
-          <Form>
+        <>
+        <div class="adminWait">
+        <Col size="md-12 lrg-12">
+          <Table striped bordered hover>
+          <thead>
+            <tr>
+              <th>Customer List</th>
+              </tr>
+          </thead>
+          <tbody>
             <ShowWaitlistItems
               waitlist={waitlist}
               removeItem={removeItem}
             />
+        
             <Subscription subscription={WAITLIST_SUBSCRIPTION}>
               {({ data, loading }) => {
                 if (loading) return null;
@@ -119,49 +122,17 @@ function AdminList() {
                 return null;
               }}
             </Subscription>
-            </Form>
-          </>
-        
+          </tbody>
+        </Table>
+        </Col>
+        </div>
+        </>
         
         );
       }}
       </Query>
       <AddWaitlistItem addItem={addItem}
       />
-      <div class="populatedTable">
-        <Col size="md-12 lrg-12">
-          <Table striped bordered hover>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th># of Guests</th>
-              <th>Phone Number</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>David</td>
-              <td>4</td>
-              <td>(408) 897-0098</td>
-              <td><Button>Seated</Button></td>
-            </tr>
-            <tr>
-              <td>Michael</td>
-              <td>3</td>
-              <td>(415) 457-2914</td>
-              <td><Button>Seat</Button></td>
-            </tr>
-            <tr>
-              <td>Rachel</td>
-              <td>2</td>
-              <td>(510) 386-2954</td>
-              <td><Button>Seat</Button></td>
-            </tr>
-          </tbody>
-          </Table>
-          </Col>
-          </div>
       </div>
     </>
   );

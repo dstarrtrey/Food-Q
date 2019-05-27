@@ -1,10 +1,11 @@
 /* page layout start */
 .styledAdmin {
-    text-align: center;
+
     min-height: 100vh;
     background-image: linear-gradient(to right, #cb2d3e, #e65337);
     padding-top: 100px;
     padding-bottom: 300px;
+    text-align: center;
   }
   /* page layout end */
 
@@ -13,7 +14,14 @@
   font-size: 60px;
   color: #fff;
   padding-bottom: 30px;
+  text-align: center;
 }  
+
+.adminWait {
+  padding: 50px 30px 50px 30px;
+  text-align: center;
+}
+
 hr {
     height:2px; 
     border:none; 
@@ -21,26 +29,35 @@ hr {
     background-color: #e2d079;
   }
 
-form {
-    padding: 30px;
-    margin: 10px;
-}
-
+/* 
 .populatedTable {
   text-align: center;
   align-content: center;
   padding: 100px 60px 100px 60px;
-}
+} */
 
 table {
   background-color: #fff;
   font-family: 'Poppins', sans-serif;
+  text-align: left;
+  align-content: center;
+  padding: 100px 60px 100px 60px;
+
 }
+
 
 th {
   background-color: #2d96bf;
   border: none;
   color: #fff;
+  font-size: 20px;
 }
 
+tbody {
+ align-content: center;
+ margin: 10px;
+}
 
+form {
+  align-content: center;
+}

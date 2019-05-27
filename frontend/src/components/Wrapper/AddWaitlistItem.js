@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
+import "./style.css";
 
 export const ADD_WAITLIST_ITEM_MUTATION = gql`
   mutation ADD_WAITLIST_ITEM_MUTATION(
@@ -30,7 +31,7 @@ class AddWaitlistItem extends Component {
     partySize: 0,
     phoneNumber: "",
   }
-
+ 
   handleChange = event => {
     const { name, value, type } = event.target;
     const val = type === 'number' ? parseFloat(value) : value;
@@ -49,7 +50,7 @@ class AddWaitlistItem extends Component {
     return (
       <Mutation mutation={ADD_WAITLIST_ITEM_MUTATION} variables={this.state}>
         {(createWaitlistItem, { loading, error }) => (
-          <form onSubmit={async event => {
+          <form class="addForm" onSubmit={async event => {
             event.preventDefault();
             this.props.addItem({...this.state, id: null});
             return await createWaitlistItem() && this.resetState();
