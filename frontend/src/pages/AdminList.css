@@ -4,6 +4,7 @@
     min-height: 100vh;
     background-image: linear-gradient(to right, #cb2d3e, #e65337);
     padding-top: 100px;
+    padding-bottom: 300px;
   }
   /* page layout end */
 
@@ -25,3 +26,22 @@ form {
     0px;
     margin: 10px;
 }
+
+.populatedTable {
+  text-align: center;
+  align-content: center;
+  padding: 100px 60px 100px 60px;
+}
+
+table {
+  background-color: #fff;
+  font-family: 'Poppins', sans-serif;
+}
+
+th {
+  background-color: #2d96bf;
+  border: none;
+  color: #fff;
+}
+
+
