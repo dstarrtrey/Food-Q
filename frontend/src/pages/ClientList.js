@@ -3,9 +3,7 @@ import gql from 'graphql-tag';
 import { Query, Subscription } from 'react-apollo';
 import { remove, some, last, isEqual } from 'lodash';
 import "./ClientList.css";
-import Jumbotron from "../components/Jumbotron";
 import { Col, Row, Container } from "../components/Grid";
-import { Input, TextArea, FormBtn } from "../components/Form";
 import Card from 'react-bootstrap/Card'
 import { subscriptionFunction } from '../helperFunctions';
 export const GET_WAITLIST_IDS_QUERY = gql`
@@ -92,13 +90,14 @@ function ClientList() {
     return index > 0 ? list[ids.indexOf(myId) - 1].partySize : 'N/A';
   }
 
- //styling
+ //begin client waitlist cards
   return (
-    <div className="clientbanner">
+    <div className="clientSection">
     <Container> 
-     <Row class="clientwaitlist">
-     <Col size="md-6 lrg-6">
-     <h1>ClientList</h1>
+     <Row>
+     <Col size="md-12 lrg-12">
+     <h1 class="clientListWait">Wait Times</h1>
+     <hr class="clientHr"></hr>
      <Query query={GET_WAITLIST_IDS_QUERY}>
        {({ loading, error, data}) => {
           if (loading) return "Loading...";
@@ -106,69 +105,70 @@ function ClientList() {
           !waitlist.length && setWaitlist([...data.waitlistItems]);
           return (
             <>
+
               <Query query={MY_PARTY_QUERY} variables={{id: myId}}>
                 {({ loading, error, data }) => {
                   if (loading) return "Loading...";
                   if (error) return `Error! ${error.message}`;
                   const { name, partySize } = data.waitlistItem;
-                  return <p><b>Your party</b>: {name}, party of {partySize}</p>
+                  return <div>
+                  <Row>
+                  <Col size="md-12 lrg-12">
+                  <Card style={{ textAlign: 'center' }}> 
+                  <Card.Header>Your Party</Card.Header>
+                  <Card.Body>
+                  <Card.Title>Some statement here or image</Card.Title> 
+                  <Card.Text>
+                    <p>{name} , Party of {partySize}</p>
+                  </Card.Text>
+                  </Card.Body>
+                  </Card> 
+                  </Col>
+                  </Row>
+                  </div>
                 }}
+        
               </Query>
-              <p><b>Parties ahead of you:</b> <span>{getAhead(waitlist)}</span></p>
-              <p><b>Party size in front of you:</b> <span>{getInFront(waitlist)}</span></p>
+              <div class="partyInfo">
+              <Row>
+              <Col size="md-6 lrg-6"> 
+              <Card style={{ textAlign: 'center' }}> 
+              <Card.Header>Parties Ahead of You</Card.Header>
+              <Card.Body>
+              <Card.Title>Some statement here or image</Card.Title> 
+              <Card.Text>
+              <p><span>{getAhead(waitlist)}</span></p>
+              </Card.Text>
+              </Card.Body>
+              </Card>
+              </Col>
+
+              <Col size="md-6 lrg-6">
+              <Card style={{ textAlign: 'center' }}> 
+              <Card.Header>Party Size in Front</Card.Header>
+              <Card.Body>
+              <Card.Title>Some statement here or image</Card.Title>  
+              <Card.Text>
+                <p><span>{getInFront(waitlist)}</span></p></Card.Text>
+              </Card.Body>
+              </Card>
+              </Col>
+
               <Subscription subscription={CLIENT_WAITLIST_SUBSCRIPTION}>
                 {subscriptionFunction}
               </Subscription>
-            
+              </Row>
+              </div>
             </>
-          
           )
        }}
      </Query>
       </Col>  
-    
-      <div class="partyInfo">
-      <Container>
-       <Row>
-       <Col size="md-4 lrg-4">
-       <Card border="light" style={{ width: '20rem' }}>
-      <Card.Header>Name</Card.Header>
-      <Card.Body>
-      <Card.Title>Party of</Card.Title>
-      <Card.Text># of Party Size</Card.Text>
-      </Card.Body>
-      </Card>
-      <br />
-       </Col>
-       <Col size="md-4 lrg-4">
-      <Card border="light" style={{ width: '20rem' }}>
-      <Card.Header>Parties Ahead of You</Card.Header>
-      <Card.Body>
-      <Card.Title>You'll be Seated Soon</Card.Title>
-      <Card.Text># of Seats Before Here</Card.Text>
-      </Card.Body>
-      </Card>
-      <br />
-       </Col>
-       <Col size="md-4 lrg-4">
-       <Card border="light" style={{ width: '20rem' }}>
-      <Card.Header>Wait Time Left</Card.Header>
-      <Card.Body>
-      <Card.Title>Almost there!</Card.Title>
-      <Card.Text>
-        Time Remaining Here
-      </Card.Text>
-    </Card.Body>
-  </Card>
-  <br />
-       </Col>
-       </Row>
-       </Container>
-       </div>
-       </Row>
-       </Container>
-       </div>
-       
+      </Row>
+  </Container>
+      </div>
+      
+
   );
 }
 
