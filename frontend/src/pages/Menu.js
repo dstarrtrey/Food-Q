@@ -61,7 +61,7 @@ function Menu() {
         />
         <input type="submit" value="Add Item" />
       </form>
-  <div class="popularDishes">
+  <div className="popularDishes">
   <CardDeck>
   <Card>
     <Card.Img variant="top" src="holder.js/100px160" />

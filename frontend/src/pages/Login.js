@@ -37,7 +37,6 @@ function Login() {
       if (loading) return null;
       if (error) console.log(error);
       if (isLoggedIn === true) setLoggedIn(true);
-      console.log(isLoggedIn);
       return loggedIn ? <Redirect to="/adminlist" /> : (
       <>
         <div className="loginStyle">
