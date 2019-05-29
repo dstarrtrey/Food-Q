@@ -12,7 +12,7 @@ const StyledBar = styled.div`
   justify-items: center;
 `;
 
-const LoadingBar = ({ starts, getAhead, index }) => {
+const LoadingBar = ({ starts, index }) => {
   console.log(starts.startingLength, index);
   const myProgress = Array(starts.startingLength).fill(false);
   myProgress[myProgress.length - index - 1] = true;

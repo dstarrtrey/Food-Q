@@ -4,9 +4,9 @@ import LoginGate from './LoginGate';
 
 const AdminGate = props = (
     <div>
-        <Logingate>
+        <LoginGate>
             <AdminList />
-        </Logingate>
+        </LoginGate>
     </div>
 );
 
