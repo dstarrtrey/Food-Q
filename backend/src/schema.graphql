@@ -15,6 +15,7 @@ type Mutation {
   removeWaitlistItem(id: ID!): WaitlistItem!
   createUser(username: String!, password: String!) : User!
   login(username: String!, password: String!): Boolean!
+  logout: Boolean!
 }
 
 type Subscription {

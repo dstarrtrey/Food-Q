@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
-import { ApolloProvider } from 'react-apollo';
+import { ApolloProvider, Mutation } from 'react-apollo';
+import gql from 'graphql-tag';
 import client from './_client';
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -11,6 +12,12 @@ import NoMatch from './pages/NoMatch';
 import Footer from './components/Footer';
 import Navbar from "./components/NavBar/index";
 import Wrapper from "./components/Wrapper/index";
+
+const ADMIN_LOGOUT_MUTATION = gql`
+  mutation ADMIN_LOGOUT_MUTATION {
+    logout
+  }
+`;
 
 function App() {
   return (
@@ -33,6 +40,9 @@ function App() {
             <Link to="/ClientList">ClientList</Link>
             <Link to="/AdminList">AdminList</Link>
             <Link to="/Menu">Menu</Link>
+            <Mutation mutation={ADMIN_LOGOUT_MUTATION}>
+              {(logout) => <span onClick={logout}>||Log Out||</span>}
+            </Mutation>
           </span>
         </div>
       </ApolloProvider>
