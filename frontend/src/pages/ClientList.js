@@ -79,7 +79,7 @@ function ClientList() {
         setWaitlist([...list]);
         break;
       default:
-        console.error(mutation, node, previousValues);
+        console.error("Error:", mutation, node, previousValues);
         break;
     }
     return null;

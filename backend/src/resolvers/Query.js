@@ -6,7 +6,7 @@ const Query = {
   waitlistItems: forwardTo('db'),
   user: forwardTo('db'),
   waitlistItem: forwardTo('db'),
-  isLoggedIn: (parent, args, { req }) => typeof req.session.user !== 'undefined',
+  isLoggedIn: (parent, args, { request }) => typeof request.session.user !== 'undefined',
 };
 
 module.exports = Query;

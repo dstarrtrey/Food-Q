@@ -6,7 +6,7 @@ import { Query } from 'react-apollo';
 import { CURRENT_USER_QUERY } from './user';
 
 import Login from './Login';
-import AdminList from './AdminList';
+import AdminGate from './AdminList';
 
 const LoginGate = props => (
 <Query query={CURRENT_USER_QUERY}>
@@ -15,7 +15,7 @@ const LoginGate = props => (
         if (!data.me){
             return(
                 <div>
-                    <Login />
+                    <AdminGate />
                 </div>
             );
         }
