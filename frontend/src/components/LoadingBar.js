@@ -6,6 +6,10 @@ const StyledBar = styled.div`
   grid-template-columns: repeat(${props => props.amount}, 1fr);
   border: 1px solid gray;
   padding: 0;
+  background-color: white;
+  margin-bottom: 10px;
+  line-height: 1.5;
+  justify-items: center;
 `;
 
 const LoadingBar = ({ starts, getAhead, index }) => {

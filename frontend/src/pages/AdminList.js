@@ -1,14 +1,20 @@
 import React, { useState } from "react";
+import "./AdminList.css";
 import gql from 'graphql-tag';
 import { Query, Subscription } from 'react-apollo';
 import { last, remove, isEqual, some }  from 'lodash';
-import AddWaitlistItem from '../components/AddWaitlistItem';
-import ShowWaitlistItems from '../components/ShowWaitlistItems'
+import AddWaitlistItem from '../components/Wrapper/AddWaitlistItem';
+import ShowWaitlistItems from '../components/ShowWaitlistItems';
+import { Col, Row, Container } from "../components/Grid";
+import Table from 'react-bootstrap/Table';
+
+
+
 
 export const GET_WAITLIST_QUERY = gql`
   query GET_WAITLIST_QUERY {
     waitlistItems {
-      id
+      id 
       name
       partySize
       phoneNumber
@@ -80,31 +86,63 @@ function AdminList() {
   const addItem = item => {
     setWaitlist([...waitlist, item]);
   }
+
+
   return (
     <>
-      <h1>AdminList</h1>
+  
+     <div className="styledAdmin">
+     <Container>
+     <Row>
+     <Col size="md-12 lrg-12">
+      <h1 className="adminList">Customers Waiting</h1>
+      <hr></hr>
+      </Col>
+      </Row>
+      </Container>
+
       <Query query={GET_WAITLIST_QUERY}>
       {({ loading, error, data}) => {
         if (loading) return "Loading...";
         if (error) return `Error! ${error.message}`;
         !waitlist.length && setWaitlist([...data.waitlistItems]);
+       
         return (
-          <>
+        
+        <>
+        <div class="adminWait">
+        <Col size="md-12 lrg-12">
+          <Table striped bordered hover>
+          <thead>
+            <tr>
+              <th>Customer List</th>
+              </tr>
+          </thead>
+          <tbody>
             <ShowWaitlistItems
               waitlist={waitlist}
               removeItem={removeItem}
             />
+        
             <Subscription subscription={WAITLIST_SUBSCRIPTION}>
               {subscriptionFunction}
             </Subscription>
-          </>
+          </tbody>
+        </Table>
+        </Col>
+        </div>
+        </>
+        
         );
       }}
       </Query>
-      <AddWaitlistItem addItem={addItem} />
+      <AddWaitlistItem addItem={addItem}
+      />
+      </div>
     </>
   );
 
 }
 
 export default AdminList;
+
