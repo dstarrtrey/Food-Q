@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 require('dotenv').config();
 const session = require('express-session');
 const bodyParser = require('body-parser');
@@ -18,7 +19,7 @@ server.express.use(
     cookie: {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      maxAge: 1000 * 60 * 60 * 24 * 7, // 7 days
+      maxAge: 1000 * 60 * 60 * 24 * 14, // 14 days
     },
   }),
 );

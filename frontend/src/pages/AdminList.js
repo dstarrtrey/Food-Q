@@ -110,7 +110,7 @@ function AdminList() {
         return (
         
         <>
-        <div class="adminWait">
+        <div className="adminWait">
         <Col size="md-12 lrg-12">
           <Table striped bordered hover>
           <thead>
