@@ -102,8 +102,8 @@ function ClientList() {
     <Container> 
      <Row>
      <Col size="md-12 lrg-12">
-     <h1 class="clientListWait">Wait Times</h1>
-     <hr class="clientHr"></hr>
+     <h1 className="clientListWait">Wait Times</h1>
+     <hr className="clientHr"></hr>
      <Query query={GET_WAITLIST_IDS_QUERY}>
        {({ loading, error, data}) => {
           if (loading) return "Loading...";
@@ -128,23 +128,23 @@ function ClientList() {
                   const { name, partySize } = data.waitlistItem;
                   return <div>
                   <Row>
-                  <Col size="md-12 lrg-12">
-                  <Card style={{ textAlign: 'center' }}> 
-                  <Card.Header>Your Party</Card.Header>
-                  <Card.Body>
-                  <Card.Title>Some statement here or image</Card.Title> 
-                  <Card.Text>
-                    <p>{name} , Party of {partySize}</p>
-                  </Card.Text>
-                  </Card.Body>
-                  </Card> 
-                  </Col>
-                  </Row>
+                    <Col size="md-12 lrg-12">
+                    <Card style={{ textAlign: 'center' }}> 
+                    <Card.Header>Your Party</Card.Header>
+                    <Card.Body>
+                    <Card.Title>Some statement here or image</Card.Title> 
+                    <Card.Text>
+                      {name} , Party of {partySize}
+                    </Card.Text>
+                    </Card.Body>
+                    </Card> 
+                    </Col>
+                    </Row>
                   </div>
                 }}
         
               </Query>
-              <div class="partyInfo">
+              <div className="partyInfo">
               <Row>
               <Col size="md-6 lrg-6"> 
               <Card style={{ textAlign: 'center' }}> 
@@ -152,7 +152,7 @@ function ClientList() {
               <Card.Body>
               <Card.Title>Some statement here or image</Card.Title> 
               <Card.Text>
-              <p><span>{getAhead(waitlist)}</span></p>
+              {getAhead(waitlist)}
               </Card.Text>
               </Card.Body>
               </Card>
@@ -163,8 +163,7 @@ function ClientList() {
               <Card.Header>Party Size in Front</Card.Header>
               <Card.Body>
               <Card.Title>Some statement here or image</Card.Title>  
-              <Card.Text>
-                <p><span>{getInFront(waitlist)}</span></p></Card.Text>
+              <Card.Text>{getInFront(waitlist)}</Card.Text>
               </Card.Body>
               </Card>
               </Col>

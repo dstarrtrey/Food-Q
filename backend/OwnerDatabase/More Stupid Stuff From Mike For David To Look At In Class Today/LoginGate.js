@@ -15,7 +15,7 @@ const LoginGate = props => (
         if (!data.me){
             return(
                 <div>
-                    <LoginGate />
+                    <Login />
                 </div>
             );
         }

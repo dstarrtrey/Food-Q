@@ -50,7 +50,7 @@ class AddWaitlistItem extends Component {
     return (
       <Mutation mutation={ADD_WAITLIST_ITEM_MUTATION} variables={this.state}>
         {(createWaitlistItem, { loading, error }) => (
-          <form class="addForm" onSubmit={async event => {
+          <form className="addForm" onSubmit={async event => {
             event.preventDefault();
             this.props.addItem({...this.state, id: null});
             return await createWaitlistItem() && this.resetState();
