@@ -86,11 +86,22 @@ const Mutation = {
         request.session.user = {
           ...user,
         };
+        request.session.save((err) => {
+          if (err) throw new Error(err);
+        });
+        console.log(request.session);
         return true;
       }
       throw new Error('Incorrect password.');
     }
     throw new Error('No Such User exists.');
+  },
+  logout(parent, args, { request }) {
+    delete request.session.user;
+    if (!request.session.user) {
+      return true;
+    }
+    return false;
   },
 };
 
