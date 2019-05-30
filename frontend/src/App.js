@@ -1,8 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+<<<<<<< HEAD
+=======
 import { ApolloProvider, Mutation, Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import client from './_client';
+>>>>>>> fddfa989525de6d245c81b6d27d3e195f92c57d2
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import ClientList from "./pages/ClientList";
@@ -30,6 +33,26 @@ export const MY_ID_QUERY = gql`
 function App() {
   return (
     <Router>
+<<<<<<< HEAD
+      <div>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/Login" component={Login} />
+          <Route exact path="/ClientList" component={ClientList} />
+          <Route exact path="/OwnerList" component={OwnerList} />
+          <Route exact path="/Menu" component={Menu} />
+          <Route component={NoMatch} />
+        </Switch>
+        <Footer />
+        <span>
+          <Link to="/">Home</Link>
+          <Link to="/Login">Login</Link>
+          <Link to="/ClientList">ClientList</Link>
+          <Link to="/Menu">Menu</Link>
+          <Link to="/OwnerList">OwnerList</Link>
+        </span>
+      </div>
+=======
       <ApolloProvider client={client}>
         <Query query={IS_LOGGED_IN_QUERY}>
           {({loading, error, data, refetch}) => {
@@ -76,6 +99,7 @@ function App() {
           }}
         </Query>
       </ApolloProvider>
+>>>>>>> fddfa989525de6d245c81b6d27d3e195f92c57d2
     </Router>
   );
 }

@@ -33,7 +33,6 @@ background-image: linear-gradient(to right, #cb2d3e, #e65337)!important;
 }
 
 
-
 .waitDetails {
   margin-top: 20px;
 }
@@ -44,6 +43,13 @@ background-image: linear-gradient(to right, #cb2d3e, #e65337)!important;
   color: #2e97c0;
 }
 
-/* .sliderQuotes {
-  margin-top: 50px;
-} */
+/* waiting bar */
+.sc-htpNat.hjXzZU {
+  background-color: #3bce7d;
+  margin-bottom: 50px;
+
+}
+
+.sushiManBanner {
+  padding: 25px;
+}
