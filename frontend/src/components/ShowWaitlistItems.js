@@ -6,6 +6,7 @@ import DeleteBtn from './DeleteBtn';
 const StyledGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr auto;
+  padding: 0 10px;
   &.legend {
     font-weight: bold;
   }

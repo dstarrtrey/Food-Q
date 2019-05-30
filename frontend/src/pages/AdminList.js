@@ -111,24 +111,14 @@ function AdminList() {
         
         <>
           <div className="adminWait">
-            <Col size="md-12 lrg-12">
-              <Table striped bordered hover>
-                <thead>
-                  <tr>
-                    <th>Customer List</th>
-                    </tr>
-                </thead>
-                <tbody>
-                  <ShowWaitlistItems
-                    waitlist={waitlist}
-                    removeItem={removeItem}
-                  />
-                  <Subscription subscription={WAITLIST_SUBSCRIPTION}>
-                    {subscriptionFunction}
-                  </Subscription>
-                </tbody>
-              </Table>
-            </Col>
+              <h2 className="customerList">Customer List</h2>
+              <ShowWaitlistItems
+                waitlist={waitlist}
+                removeItem={removeItem}
+              />
+              <Subscription subscription={WAITLIST_SUBSCRIPTION}>
+                {subscriptionFunction}
+              </Subscription>
           </div>
         </>
         

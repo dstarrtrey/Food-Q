@@ -26,7 +26,7 @@ const LoginError = styled.small`
   color: #989696;
 `;
 
-function Login() {
+function Login(props) {
   const [ username, setUsername ] = useState("");
   const [ password, setPassword ] = useState("");
   const [ loggedIn, setLoggedIn ] = useState(false);
@@ -51,7 +51,9 @@ function Login() {
                         e.preventDefault();
                         const res = await login();
                         const valid = res.data.login;
+                        props.fetchLoginState();
                         if (valid === true) setLoggedIn(true);
+
                       }}
                       className="userform"
                     >
