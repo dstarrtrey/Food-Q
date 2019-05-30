@@ -6,11 +6,9 @@ const createServer = require('./createServer');
 // const db = require('./db');
 
 const server = createServer();
-
-// TODO Use express middleware to handle cookies with JWT
-// TODO Use middleware to populate current user
-
-server.express.use(
+const app = server.express;
+// Express-session deals with frontend validation
+app.use(
   session({
     name: 'qid',
     secret: 'asodjsaodijasodijsaodisajodaisjd22222jdjd',
@@ -23,8 +21,9 @@ server.express.use(
     },
   }),
 );
-server.express.use(bodyParser.urlencoded({ extended: true }));
-server.express.use(bodyParser.json());
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 server.start({
   cors: {
