@@ -25,35 +25,38 @@ export const ADMIN_LOGIN_MUTATION = gql`
 const LoginError = styled.small`
   color: #989696;
 `;
+const StyledMessage = styled.p`
+  color: white;
+  text-decoration: underline;
+  text-underline-position: under;
+`;
 
 function Login(props) {
   const [ username, setUsername ] = useState("");
   const [ password, setPassword ] = useState("");
-  const [ loggedIn, setLoggedIn ] = useState(false);
   
   return (
   <Query query={IS_LOGGED_IN_QUERY}>
     {({loading, error, data: { isLoggedIn }}) => {
       if (loading) return null;
-      if (error) console.log(error);
-      if (isLoggedIn === true) setLoggedIn(true);
-      return loggedIn ? <Redirect to="/adminlist" /> : (
+      if (error) {
+        console.log(error)
+      };
+      return isLoggedIn ? <Redirect to="/testAdminList" /> : (
       <>
         <div className="loginStyle">
         <img src="images/foodqlogo.png" alt="foodq logo"></img>
           <Container> 
             <Row> 
               <Col size="md-12 lrg-12">
+                <StyledMessage>{props.children}</StyledMessage>
                 <Mutation mutation={ADMIN_LOGIN_MUTATION} variables={{username, password}}>
                   {(login, { loading, error }) => (
                     <form
                       onSubmit={async e => {
                         e.preventDefault();
-                        const res = await login();
-                        const valid = res.data.login;
+                        await login();
                         props.fetchLoginState();
-                        if (valid === true) setLoggedIn(true);
-
                       }}
                       className="userform"
                     >

@@ -14,15 +14,22 @@ const StyledBar = styled.div`
 
 const LoadingBar = ({ starts, index }) => {
   console.log(starts.startingLength, index);
+
+  // Array of indexes, one of which is the user's.
+  // ie. [false, false, true , false false false false]
   const myProgress = Array(starts.startingLength).fill(false);
   myProgress[myProgress.length - index - 1] = true;
-  console.log(myProgress);
+  
   return (
     <StyledBar amount={starts.startingLength}>
       {myProgress.map((index, i) => {
+        {/* If it is the user's turn */}
         if (index && i === myProgress.length - 1) return <div key={i}>FOOD TIME</div> 
+        {/* The user's index */}
         if (index) return <div key={i}>O</div>
+        {/* The final index */}
         if (i === myProgress.length - 1) return <div key={i}>YUM</div>
+        {/* Any other index in between */}
         return <div key={i}>|</div>
       })}
     </StyledBar>

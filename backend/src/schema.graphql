@@ -7,6 +7,8 @@ type Query {
   menuItems: [MenuItem]!
   waitlistItems: [WaitlistItem]!
   isLoggedIn: Boolean!
+  myId: String!
+  doIExist(where: UserWhereUniqueInput): Boolean!
 }
 
 type Mutation {
