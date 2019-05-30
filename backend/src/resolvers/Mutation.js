@@ -1,3 +1,10 @@
+<<<<<<< HEAD
+const Mutation = {
+  async createUser(parent, args, ctx, info) {
+    // Check if logged in
+
+    const newUser = await ctx.db.mutation.createUser({
+=======
 const bcrypt = require('bcryptjs');
 const client = require('twilio')(process.env.TWILIO_SID, process.env.TWILIO_AUTH_TOKEN);
 const { PUBSUB_NEW_WAITLIST_ITEM } = require('../shared/constants');
@@ -14,10 +21,15 @@ const Mutation = {
 
   async createWaitlistItem(parent, args, { db, pubsub }, info) {
     const newWaitlistItem = await db.mutation.createWaitlistItem({
+>>>>>>> fddfa989525de6d245c81b6d27d3e195f92c57d2
       data: {
         ...args,
       },
     }, info);
+<<<<<<< HEAD
+
+    return newUser;
+=======
     pubsub.publish(PUBSUB_NEW_WAITLIST_ITEM, {
       newWaitlistItem,
     });
@@ -37,7 +49,7 @@ const Mutation = {
     //     body: `Hello ${name}, the status of your party of ${partySize} can be
     //     found at: ${textUrl}.`,
     //     // this is the # thats
-    //     from: '+15104625508',
+    //     from: process.env.TWILIO_PHONE_NUMBER,
     //     // currently in trial mode, you can only send to reigstered phone #s
     //     // which is my number, call me maybe
     //     to: phoneNumber,
@@ -89,19 +101,19 @@ const Mutation = {
         request.session.save((err) => {
           if (err) throw new Error(err);
         });
-        console.log('Current session:', request.session.user);
         return true;
       }
       throw new Error('Incorrect password.');
     }
     throw new Error('No Such User exists.');
   },
-  logout(parent, args, { request, pubsub }) {
+  logout(parent, args, { request }) {
     delete request.session.user;
     if (!request.session.user) {
       return true;
     }
     return false;
+>>>>>>> fddfa989525de6d245c81b6d27d3e195f92c57d2
   },
 };
 
