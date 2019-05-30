@@ -48,15 +48,13 @@ export const MY_PARTY_QUERY = gql`
 `;
 //logic
 
-function ClientList() {
+function ClientList(props) {
   const [ waitlist, setWaitlist ] = useState([]);
   const [ starts, setStarts ] = useState({
     startingLength: 0,
   })
-  // TODO: replace myId with whatever URL parameter is
-  // TODO: Make a loading bar!
-  
-  const myId = 'cjw9fz5xhjlcu0b12scf10c6d';
+  const { id }= props.match.params;
+  // const id = 'cjw9fz5xhjlcu0b12scf10c6d';
   
   // Will automatically generate updates for waitlist in Subscription component
   const subscriptionFunction = ({ data, loading}) => {
@@ -88,13 +86,13 @@ function ClientList() {
 
   const getAhead = list => {
     const ids = list.map(item => item.id);
-    return ids.indexOf(myId);
+    return ids.indexOf(id);
   }
 
   const getInFront = list => {
     const ids = list.map(item => item.id);
-    const index = ids.indexOf(myId);
-    return index > 0 ? list[ids.indexOf(myId) - 1].partySize : 'N/A';
+    const index = ids.indexOf(id);
+    return index > 0 ? list[ids.indexOf(id) - 1].partySize : 'N/A';
   }
 
  //begin client waitlist cards
@@ -122,7 +120,7 @@ function ClientList() {
                 starts={starts}
                 index={getAhead(waitlist)}
               />
-              <Query query={MY_PARTY_QUERY} variables={{id: myId}}>
+              <Query query={MY_PARTY_QUERY} variables={{ id }}>
                 {({ loading, error, data }) => {
                   if (loading) return "Loading...";
                   if (error) return `Error! ${error.message}`;

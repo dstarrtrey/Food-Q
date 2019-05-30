@@ -38,7 +38,7 @@ function App() {
                 <Switch>
                   <Route exact path="/" component={Home} />
                   <Route exact path="/Login" component={() => <Login fetchLoginState={refetch} />} />
-                  <Route exact path="/ClientList" component={ClientList} />
+                  <Route path="/ClientList/:id" component={ClientList} />
                   <Route exact path="/AdminList" component={AdminList} />
                   <Route exact path="/testAdminList" component={() => <TestLoginGate />} />
                   <Route exact path="/Menu" component={Menu} />
@@ -49,7 +49,7 @@ function App() {
                 <span>
                   <Link to="/">Home</Link>
                   <Link to="/Login">Login</Link>
-                  <Link to="/ClientList">ClientList</Link>
+                  <Link to="/ClientList/cjw9fz5xhjlcu0b12scf10c6d">ClientList</Link>
                   <Link to="/AdminList">AdminList</Link>
                   <Link to="/Menu">Menu</Link>
                   <Link to="/testAdminList">Test</Link>
