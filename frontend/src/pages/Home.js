@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 function Home() {
   return (
     <div className="styledHome">
-    <Banner backgroundImage="images/sushibanner.jpg">
+      <Banner backgroundImage="images/sushibanner.jpg">
         {/* <h1>Angry Fish Sushi</h1>
         <h2>San Leandro, CA</h2> */}
       </Banner>
