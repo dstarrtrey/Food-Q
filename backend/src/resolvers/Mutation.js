@@ -89,6 +89,7 @@ const Mutation = {
         request.session.save((err) => {
           if (err) throw new Error(err);
         });
+        console.log('Current session:', request.session.user);
         return true;
       }
       throw new Error('Incorrect password.');
