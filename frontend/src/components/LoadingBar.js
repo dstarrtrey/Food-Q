@@ -2,23 +2,31 @@ import React from 'react';
 import styled from 'styled-components';
 import waitlisto from './waitlisto.png';
 import waitlistyum from './waitlistyum.png';
+import './LoadingBar.css';
 
 const StyledBar = styled.div`
   display: grid;
-  grid-template-columns: repeat(${props => props.amount}, 1fr);
-  border: 1px solid gray;
-  padding: 0;
   background-color: white;
+  grid-template-columns: repeat(${props => props.amount}, 1fr);
+  padding: 0;
+  font-size: 20px;
+  font-weight: lighter;
+  border-radius: 10px;
   margin-bottom: 50px;
-  line-height: 2;
   justify-items: center;
+  align-items: center;
 `;
 
-const StyledO = styled.div`
-background-color: green;
+const StyledO = styled.img`
+  border: 3px solid green;
+  width: 50px;
+  height: 30px;
 `;
 
-const StyledYum = styled.div`
+const StyledYum = styled.img`
+  border: 3px solid yellow;
+  width: 50px;
+  height: 50px;
 `;
 
 const LoadingBar = ({ starts, index }) => {
@@ -35,9 +43,9 @@ const LoadingBar = ({ starts, index }) => {
         {/* If it is the user's turn */}
         if (index && i === myProgress.length - 1) return <div key={i}>FOOD TIME</div> 
         {/* The user's index */}
-        if (index) return <div key={i}><StyledO><img src={waitlisto} alt="O" /></StyledO></div>
+        if (index) return <img key={i} className="waitlistimg" src={waitlisto} alt="My Status" />
         {/* The final index */}
-        if (i === myProgress.length - 1) return <div key={i}><StyledYum><img src={waitlistyum} alt="Yum" /></StyledYum></div>
+        if (i === myProgress.length - 1) return <img key={i} className="waitlistimg" src={waitlistyum} alt="Food Time" />
         {/* Any other index in between */}
         return <div key={i}>|</div>
       })}
