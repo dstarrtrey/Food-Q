@@ -54,7 +54,7 @@ function App() {
                   <Link to="/Menu">Menu</Link>
                   <Link to="/testAdminList">Test</Link>
                   {loading ? <span>Loading...</span>
-                    : <strong>Logged in: {JSON.stringify(data.isLoggedIn)}</strong>} 
+                    : error ? <span>Error: {error.message}</span> : <strong>Logged in: {JSON.stringify(data.isLoggedIn)}</strong>} 
                   <Mutation mutation={ADMIN_LOGOUT_MUTATION}>
                     {(logout) => <button onClick={() => {
                       logout().then(() => {
@@ -72,7 +72,8 @@ function App() {
                   }}
                 </Query>
               </>
-            )}}
+            )
+          }}
         </Query>
       </ApolloProvider>
     </Router>

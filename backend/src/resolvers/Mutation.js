@@ -37,7 +37,7 @@ const Mutation = {
     //     body: `Hello ${name}, the status of your party of ${partySize} can be
     //     found at: ${textUrl}.`,
     //     // this is the # thats
-    //     from: '+15104625508',
+    //     from: process.env.TWILIO_PHONE_NUMBER,
     //     // currently in trial mode, you can only send to reigstered phone #s
     //     // which is my number, call me maybe
     //     to: phoneNumber,
@@ -89,14 +89,13 @@ const Mutation = {
         request.session.save((err) => {
           if (err) throw new Error(err);
         });
-        console.log('Current session:', request.session.user);
         return true;
       }
       throw new Error('Incorrect password.');
     }
     throw new Error('No Such User exists.');
   },
-  logout(parent, args, { request, pubsub }) {
+  logout(parent, args, { request }) {
     delete request.session.user;
     if (!request.session.user) {
       return true;
