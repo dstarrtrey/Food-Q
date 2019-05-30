@@ -4,13 +4,13 @@
     min-height: 100vh;
     background-image: linear-gradient(to right, #cb2d3e, #e65337);
     padding-top: 100px;
-    padding-bottom: 300px;
+    padding-bottom: 100px;
     text-align: center;
   }
   /* page layout end */
 
-.adminList {
-  font-family: 'Poppins', sans-serif;
+.adminList h1 {
+  font-family: 'Lobster', cursive;
   font-size: 60px;
   color: #fff;
   padding-bottom: 30px;
@@ -18,8 +18,9 @@
 }  
 
 .adminWait {
-  padding: 50px 30px 50px 30px;
+  padding: 100px 30px 100px 30px;
   text-align: center;
+  font-family: 'Lobster', cursive;
 }
 
 hr {
@@ -29,37 +30,49 @@ hr {
     background-color: #e2d079;
   }
 
-/* 
-.populatedTable {
-  text-align: center;
-  align-content: center;
-  padding: 100px 60px 100px 60px;
-} */
-
-.adminWait {
-  background-color: #fff;
-  font-family: 'Poppins', sans-serif;
-  text-align: left;
-  align-content: center;
-  padding: 0;
-  margin: 0 60px 20px 60px;
-
-}
-
 
 h2.customerList {
   background-color: #2d96bf;
+  text-align: center;
   border: none;
   color: #fff;
-  font-size: 20px;
-  padding: 15px;
+  font-size: 50px;
+  margin-top: 40px; }
+  
+
+.sushiMan {
+  padding: 25px;
 }
 
-tbody {
- align-content: center;
- margin: 10px;
+
+/* headers */
+.legend.sc-bZQynM.feHedj {
+  text-align: center;
+  color: #2d96bf;
+  width: 90%;
+  padding: 5px;
+
 }
 
-form {
-  align-content: center;
+/* inner rows */
+.sc-bZQynM.feHedj {
+  text-align: center;
+  width: 90%;
+  padding: 5px;
+}
+
+fieldset {
+  padding: 10px;
+}
+
+#name {
+  margin-right: 10px;
+}
+
+#party-size {
+  margin-right: 10px;
+}
+
+#phone-num {
+  margin-right: 10px;
 }

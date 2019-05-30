@@ -1,115 +1,187 @@
 import React, { useState } from "react";
 import styled from 'styled-components';
-import MenuItem from '../components/MenuItem';
-import Card from 'react-bootstrap/Card'
-import CardDeck from 'react-bootstrap/CardDeck'
-
-const StyledMenu = styled.div`
-  display: grid;
-  grid-template-columns: 1fr auto;
-  margin: 50px;
-`;
+import "./Menu.css";
 
 function Menu() {
-  const [menu, setMenu] = useState([
-    { name: "Whole Piglet", price: 200 },
-    { name: "Bird Nest Soup", price: 50 },
-    { name: "Peking Duck", price: 30 },
-    { name: "Golden Egg Fried Rice", price: 12 },
-    { name: "House Egg Noodle", price: 12 },
-    { name: "Wonton Noodle Soup", price: 10 }
-  ]);
-  const [name, setName] = useState("");
-  const [price, setPrice] = useState(0);
-  
-  const addItem = event => {
-    event.preventDefault();
-    const { name, price } = event.target;
-
-    //Creates copy of current menu array and adds item to end of it
-    setMenu([...menu, {
-      name: name.value,
-      price: price.value
-    }]);
-    setName('');
-    setPrice(0);
-  }
-
   return (
-    <div>
-      <StyledMenu>
-        {menu.map(dish => (
-          <MenuItem key={dish.name} name={dish.name} price={dish.price} />
-        ))}
-      </StyledMenu>
-      <form onSubmit={addItem}>
-        <label htmlFor="name">Name</label>
-        <input
-          type="text"
-          name="name"
-          placeholder="Name"
-          value={name}
-          onChange={e => setName(e.target.value)}
-        />
-        <label htmlFor="price">Price</label>
-        <input
-          type="number"
-          name="price"
-          placeholder="Price"
-          value={price}
-          onChange={e => setPrice(e.target.value)}
-        />
-        <input type="submit" value="Add Item" />
-      </form>
-  <div className="popularDishes">
-  <CardDeck>
-  <Card>
-    <Card.Img variant="top" src="holder.js/100px160" />
-    <Card.Body>
-      <Card.Title>Card title</Card.Title>
-      <Card.Text>
-        This is a wider card with supporting text below as a natural lead-in to
-        additional content. This content is a little bit longer.
-      </Card.Text>
-    </Card.Body>
-    <Card.Footer>
-      <small className="text-muted">Last updated 3 mins ago</small>
-    </Card.Footer>
-  </Card>
-  <Card>
-    <Card.Img variant="top" src="holder.js/100px160" />
-    <Card.Body>
-      <Card.Title>Card title</Card.Title>
-      <Card.Text>
-        This card has supporting text below as a natural lead-in to additional
-        content.{' '}
-      </Card.Text>
-    </Card.Body>
-    <Card.Footer>
-      <small className="text-muted">Last updated 3 mins ago</small>
-    </Card.Footer>
-  </Card>
-  <Card>
-    <Card.Img variant="top" src="holder.js/100px160" />
-    <Card.Body>
-      <Card.Title>Card title</Card.Title>
-      <Card.Text>
-        This is a wider card with supporting text below as a natural lead-in to
-        additional content. This card has even longer content than the first to
-        show that equal height action.
-      </Card.Text>
-    </Card.Body>
-    <Card.Footer>
-      <small className="text-muted">Last updated 3 mins ago</small>
-    </Card.Footer>
-  </Card>
-</CardDeck>
-</div>  
+    <>
+			<div className="menuStyle">
+				<br />
+				<div className="introParagraph">
+					<h2>Angry Fish Menu</h2>
+					<hr />
+					<p>
+          Angry Fish Sushi has been regarded as one of the premiere sushi and Japanese 
+          restaurants in the Bay Area for many years. menu focuses on the fresh seafood 
+          and diverse dishes with its Japanese and Eastern flare. Our menu offers standard 
+          sushi rolls, nigiri and sashimi and even some with a little enhancement. 
+					</p>
+				</div>
+        
+  <div class="container">
+  <div class="menu flex-row flex-wrap flex-center">
+    <div class="appetizers">
+      <h2>Appetizers</h2>
+      <div class="menu-item"> 
+        <span class="menu-item-title">Edamame </span>
+        <span>-</span>
+        <span class="menu-item-price"> 6</span>
+        <p class="menu-item-description">sautéed traditionally or angry, sprinkled with salts</p>
+      </div>
+      <div class="menu-item"> 
+        <span class="menu-item-title">Miso Soup </span>
+        <span></span>
+        <span>-</span>
+        <span class="menu-item-price"> 4</span>
+        <p class="menu-item-description">steaming broth with tofu, seaweed, and 
+        green onion, serves two</p>
+      </div>
+      <div class="menu-item"> 
+        <span class="menu-item-title">Agedashi Tofu </span>
+        <span>-</span><span class="menu-item-price"> 9</span>
+        <p class="menu-item-description">crispy deep fried tofu served in flavorful tsuyu sauce, our most popular appetizer </p>
+      </div>
+      <div class="menu-item"> 
+        <span class="menu-item-title">Japanese Spring Rolls </span>
+        <span>-</span>
+        <span class="menu-item-price"> 9</span>
+        <p class="menu-item-description">salmon, crab meat, lettuce, avocado wrapped in rice paper</p>
+      </div>
+      <span><img class="fairyTaleRoll" src="images/fairytale_roll.jpg" alt="fairytale roll"></img></span>
+    </div>
+
+    <div class="appetizers">
+    <span><img class="springRolls" src="images/spring_rolls.jpg" alt="spring rolls"></img></span>
+      <h2>Chef Specials</h2>
+      <div class="menu-item"> 
+        <span class="menu-item-title">Edamame </span>
+        <span>-</span>
+        <span class="menu-item-price"> 6</span>
+        <p class="menu-item-description">sautéed traditionally or angry, sprinkled with salts</p>
+      </div>
+      <div class="menu-item"> 
+        <span class="menu-item-title">Miso Soup </span>
+        <span>-</span>
+        <span class="menu-item-price"> 4</span>
+        <p class="menu-item-description">steaming broth with tofu, seaweed, and 
+        green onion, serves two</p>
+      </div>
+      <div class="menu-item"> 
+        <span class="menu-item-title">Agedashi Tofu </span>
+        <span>-</span><span class="menu-item-price"> 9</span>
+        <p class="menu-item-description">crispy deep fried tofu served in flavorful tsuyu sauce, our most popular appetizer </p>
+      </div>
+      <div class="menu-item"> 
+        <span class="menu-item-title">Japanese Spring Rolls </span>
+        <span>-</span>
+        <span class="menu-item-price"> 9</span>
+        <p class="menu-item-description">salmon, crab meat, lettuce, avocado wrapped in rice paper</p>
+      </div>
+      <div class="menu-item"> 
+        <span class="menu-item-title">Japanese Spring Rolls </span>
+        <span>-</span>
+        <span class="menu-item-price"> 9</span>
+        <p class="menu-item-description">salmon, crab meat, lettuce, avocado wrapped in rice paper</p>
+      </div>
+      <div class="menu-item"> 
+        <span class="menu-item-title">Japanese Spring Rolls </span>
+        <span>-</span>
+        <span class="menu-item-price"> 9</span>
+        <p class="menu-item-description">salmon, crab meat, lettuce, avocado wrapped in rice paper</p>
+      </div>
+      <div class="menu-item"> 
+        <span class="menu-item-title">Japanese Spring Rolls </span>
+        <span>-</span>
+        <span class="menu-item-price"> 9</span>
+        <p class="menu-item-description">salmon, crab meat, lettuce, avocado wrapped in rice paper</p>
+      </div>
+    </div>
+
+    <div class="entrees">
+      <h2>Specialty Rolls	</h2>
+      <div class="menu-item"> 
+        <span class="menu-item-name">Burger Moderno </span>
+        <span>-</span>
+        <span class="menu-item-price"> 14</span>
+        <p class="menu-item-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+      </div>
+      <div class="menu-item"> 
+        <span class="menu-item-name">Lemon Red Snapper </span>
+        <span>-</span>
+        <span class="menu-item-price"> 28</span>
+        <p class="menu-item-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+      </div>
+      <div class="menu-item"> 
+        <span class="menu-item-name">Steak Diane </span>
+        <span>-</span>
+        <span class="menu-item-price"> 32</span>
+        <p class="menu-item-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+      </div>
+      <div class="menu-item"> 
+        <span class="menu-item-name">Steak Diane </span>
+        <span>-</span>
+        <span class="menu-item-price"> 32</span>
+        <p class="menu-item-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+      </div>
+      <div class="menu-item"> 
+        <span class="menu-item-name">Steak Diane </span>
+        <span>-</span>
+        <span class="menu-item-price"> 32</span>
+        <p class="menu-item-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+      </div>
+      <div class="menu-item"> 
+        <span class="menu-item-name">Steak Diane </span>
+        <span>-</span>
+        <span class="menu-item-price"> 32</span>
+        <p class="menu-item-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+      </div> 
+    </div>
+    <div class="entrees">
+      <h2>Bento Boxes	</h2>
+      <div class="menu-item"> 
+        <span class="menu-item-name">Burger Moderno </span>
+        <span>-</span>
+        <span class="menu-item-price"> 14</span>
+        <p class="menu-item-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+      </div>
+      <div class="menu-item"> 
+        <span class="menu-item-name">Lemon Red Snapper </span>
+        <span>-</span>
+        <span class="menu-item-price"> 28</span>
+        <p class="menu-item-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+      </div>
+      <div class="menu-item"> 
+        <span class="menu-item-name">Steak Diane </span>
+        <span>-</span>
+        <span class="menu-item-price"> 32</span>
+        <p class="menu-item-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+      </div>
+      <div class="menu-item"> 
+        <span class="menu-item-name">Steak Diane </span>
+        <span>-</span>
+        <span class="menu-item-price"> 32</span>
+        <p class="menu-item-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+      </div>
+      <div class="menu-item"> 
+        <span class="menu-item-name">Steak Diane </span>
+        <span>-</span>
+        <span class="menu-item-price"> 32</span>
+        <p class="menu-item-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+      </div>
+      <div class="menu-item"> 
+        <span class="menu-item-name">Steak Diane </span>
+        <span>-</span>
+        <span class="menu-item-price"> 32</span>
+        <p class="menu-item-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+      </div>
+      
+    </div>
+  </div>
 </div>
-
-
-    
-  );
+</div>
+			
+		</>
+	);
 }
 
 export default Menu;
