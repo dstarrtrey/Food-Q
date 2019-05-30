@@ -75,7 +75,7 @@ const Mutation = {
       return newUser;
     }
   },
-  async login(parent, { username, password }, { request, db }) {
+  async login(parent, { username, password }, { request, db, pubsub }) {
     const user = await db.query.user({
       where: {
         username,
@@ -89,14 +89,13 @@ const Mutation = {
         request.session.save((err) => {
           if (err) throw new Error(err);
         });
-        console.log(request.session);
         return true;
       }
       throw new Error('Incorrect password.');
     }
     throw new Error('No Such User exists.');
   },
-  logout(parent, args, { request }) {
+  logout(parent, args, { request, pubsub }) {
     delete request.session.user;
     if (!request.session.user) {
       return true;

@@ -5,7 +5,7 @@ const { PUBSUB_NEW_WAITLIST_ITEM } = require('../shared/constants');
 
 const Subscription = {
   newWaitlistItem: {
-    subscribe: async (parent, args, ctx) => ctx.pubsub.asyncIterator(PUBSUB_NEW_WAITLIST_ITEM),
+    subscribe: async (_, __, ctx) => ctx.pubsub.asyncIterator(PUBSUB_NEW_WAITLIST_ITEM),
   },
   waitlistItem: {
     subscribe: forwardTo('db'),

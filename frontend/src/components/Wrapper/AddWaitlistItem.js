@@ -57,6 +57,7 @@ class AddWaitlistItem extends Component {
           }}>
             <fieldset disabled={loading}>
               <input
+                placeholder="Name"
                 type="text"
                 name="name"
                 value={this.state.name}
@@ -64,6 +65,7 @@ class AddWaitlistItem extends Component {
                 id="name"
               />
               <input
+                placeholder="Party Size"
                 type="number"
                 name="partySize"
                 value={this.state.partySize}
@@ -71,6 +73,7 @@ class AddWaitlistItem extends Component {
                 id="party-size"
               />
               <input
+                placeholder="Phone Number"
                 type="tel"
                 name="phoneNumber"
                 value={this.state.phoneNumber}

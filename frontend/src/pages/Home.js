@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 
 function Home() {
   return (
-    <div class="styledHome">
+    <div className="styledHome">
     <Banner backgroundImage="images/sushibanner.jpg">
         {/* <h1>Angry Fish Sushi</h1>
         <h2>San Leandro, CA</h2> */}
@@ -16,18 +16,18 @@ function Home() {
       <Container style={{ marginTop: 30 }}>
         <Row>
           <Col size="md-12 lrg-12">
-            <h1 class="introheader">Angry Fish Sushi</h1>
+            <h1 className="introheader">Angry Fish Sushi</h1>
           </Col>
         </Row>
         <Row>
           <Col className="box" size="md-12 lrg-12">
-          <p><i class="fas fa-map-marker-alt"></i> LOCATION - 16250 E 14th St, San Leandro, CA 94578</p>
+          <p><i className="fas fa-map-marker-alt"></i> LOCATION - 16250 E 14th St, San Leandro, CA 94578</p>
           <hr></hr>
-          <p><i class="fas fa-utensils" ></i> TYPE OF CUISINE - Japanese</p>
+          <p><i className="fas fa-utensils" ></i> TYPE OF CUISINE - Japanese</p>
           <hr></hr>
-          <p>RATINGS - <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></p>
+          <p>RATINGS - <i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="far fa-star"></i></p>
           <hr></hr>
-          <p><i class="fas fa-clock"></i> AVERAGE WAIT TIME - 30 minutes</p>
+          <p><i className="fas fa-clock"></i> AVERAGE WAIT TIME - 30 minutes</p>
           <Link to="/Menu"><Button type="submit">Browse Menu</Button>
           </Link>
           </Col>
