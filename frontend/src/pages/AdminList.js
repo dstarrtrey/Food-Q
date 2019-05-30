@@ -110,8 +110,9 @@ function AdminList() {
         return (
         
         <>
+           <span><img class="sushiMan" src="images/sushiwaitlist_guy.png" alt="sushi man"></img></span>
           <div className="adminWait">
-              <h2 className="customerList">Customer List</h2>
+              <h2 className="customerList">Current Waitlist</h2>
               <ShowWaitlistItems
                 waitlist={waitlist}
                 removeItem={removeItem}

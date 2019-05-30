@@ -5,7 +5,6 @@ import { remove, some, last, isEqual } from 'lodash';
 import Card from 'react-bootstrap/Card';
 import "./ClientList.css";
 import { Col, Row, Container } from "../components/Grid";
-import { Input, TextArea, FormBtn } from "../components/Form";
 import LoadingBar from '../components/LoadingBar';
 
 export const GET_WAITLIST_IDS_QUERY = gql`
@@ -103,6 +102,7 @@ function ClientList(props) {
      <Col size="md-12 lrg-12">
      <h1 className="clientListWait">Wait Times</h1>
      <hr className="clientHr"></hr>
+     <span><img class="sushiManBanner" src="images/sushi_man_banner.png" alt="sushi man banner"></img></span>
      <Query query={GET_WAITLIST_IDS_QUERY}>
        {({ loading, error, data}) => {
           if (loading) return "Loading...";
@@ -129,12 +129,11 @@ function ClientList(props) {
                   <Row>
                     <Col size="md-12 lrg-12">
                     <Card style={{ textAlign: 'center' }}> 
-                    <Card.Header>Your Party</Card.Header>
+                    <Card.Header>Your Party <i class="fas fa-users"></i></Card.Header>
                     <Card.Body>
-                    <Card.Title>Some statement here or image</Card.Title> 
-                    <Card.Text>
+                    <Card.Title>
                       {name} , Party of {partySize}
-                    </Card.Text>
+                    </Card.Title>
                     </Card.Body>
                     </Card> 
                     </Col>
@@ -149,10 +148,9 @@ function ClientList(props) {
               <Card style={{ textAlign: 'center' }}> 
               <Card.Header>Parties Ahead of You</Card.Header>
               <Card.Body>
-              <Card.Title>Some statement here or image</Card.Title> 
-              <Card.Text>
+              <Card.Title>
               {getAhead(waitlist)}
-              </Card.Text>
+              </Card.Title>
               </Card.Body>
               </Card>
               </Col>
@@ -161,8 +159,7 @@ function ClientList(props) {
               <Card style={{ textAlign: 'center' }}> 
               <Card.Header>Party Size in Front</Card.Header>
               <Card.Body>
-              <Card.Title>Some statement here or image</Card.Title>  
-              <Card.Text>{getInFront(waitlist)}</Card.Text>
+              <Card.Title>{getInFront(waitlist)}</Card.Title>
               </Card.Body>
               </Card>
               </Col>
