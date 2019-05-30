@@ -1,14 +1,119 @@
+<<<<<<< HEAD
 const Mutation = {
   async createUser(parent, args, ctx, info) {
     // Check if logged in
 
     const newUser = await ctx.db.mutation.createUser({
+=======
+const bcrypt = require('bcryptjs');
+const client = require('twilio')(process.env.TWILIO_SID, process.env.TWILIO_AUTH_TOKEN);
+const { PUBSUB_NEW_WAITLIST_ITEM } = require('../shared/constants');
+
+const Mutation = {
+  async createMenuItem(parent, args, ctx, info) {
+    const newMenuItem = await ctx.db.mutation.createMenuItem({
       data: {
         ...args,
       },
     }, info);
+    return newMenuItem;
+  },
+
+  async createWaitlistItem(parent, args, { db, pubsub }, info) {
+    const newWaitlistItem = await db.mutation.createWaitlistItem({
+>>>>>>> fddfa989525de6d245c81b6d27d3e195f92c57d2
+      data: {
+        ...args,
+      },
+    }, info);
+<<<<<<< HEAD
 
     return newUser;
+=======
+    pubsub.publish(PUBSUB_NEW_WAITLIST_ITEM, {
+      newWaitlistItem,
+    });
+    // Twilio functionality
+
+    // const {
+    //   id,
+    //   phoneNumber,
+    //   name,
+    //   partySize,
+    // } = newWaitlistItem;
+    // const textUrl = `${process.env.FRONTEND_URL}/list/${id}`;
+
+    // client.messages
+    //   .create({
+    //   // the body msg is what the text will apppear
+    //     body: `Hello ${name}, the status of your party of ${partySize} can be
+    //     found at: ${textUrl}.`,
+    //     // this is the # thats
+    //     from: process.env.TWILIO_PHONE_NUMBER,
+    //     // currently in trial mode, you can only send to reigstered phone #s
+    //     // which is my number, call me maybe
+    //     to: phoneNumber,
+    //   })
+    //   .then(message => console.log(message.sid))
+
+    return newWaitlistItem;
+  },
+
+  async removeWaitlistItem(parent, args, { db, pubsub }, info) {
+    const deletedItem = await db.mutation.deleteWaitlistItem({
+      where: {
+        ...args,
+      },
+    }, info);
+    pubsub.publish(PUBSUB_NEW_WAITLIST_ITEM, {
+      deletedItem,
+    });
+    return deletedItem;
+  },
+
+  async createUser(parent, { username, password }, { db }, info) {
+    const userExists = await db.exists.User({
+      username,
+    });
+    if (userExists) {
+      throw new Error('Another user with same username exists.');
+    } else {
+      const newUser = await db.mutation.createUser({
+        data: {
+          username,
+          password: await bcrypt.hashSync(password, 10),
+        },
+      }, info);
+      return newUser;
+    }
+  },
+  async login(parent, { username, password }, { request, db, pubsub }) {
+    const user = await db.query.user({
+      where: {
+        username,
+      },
+    });
+    if (user) {
+      if (await bcrypt.compareSync(password, user.password)) {
+        request.session.user = {
+          ...user,
+        };
+        request.session.save((err) => {
+          if (err) throw new Error(err);
+        });
+        return true;
+      }
+      throw new Error('Incorrect password.');
+    }
+    throw new Error('No Such User exists.');
+  },
+  logout(parent, args, { request }) {
+    delete request.session.user;
+    if (!request.session.user) {
+      return true;
+    }
+    return false;
+>>>>>>> fddfa989525de6d245c81b6d27d3e195f92c57d2
   },
 };
 
