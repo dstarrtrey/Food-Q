@@ -1,16 +1,5 @@
 # import * from './generated/prisma.graphql'
 
-<<<<<<< HEAD
-type Mutation {
-  createUser(username: String!, password: String!) : User!
-  createMenuItem(name: String!, cost: Int!, inStock: Boolean): MenuItem!
-}
-
-type Query {
-  users: [User]!
-  menuItems: [MenuItem]!
-  waitlistItems: [WaitlistItem]!
-=======
 type Query {
   users: [User]!
   user(where: UserWhereUniqueInput!): User!
@@ -34,5 +23,4 @@ type Mutation {
 type Subscription {
   newWaitlistItem: WaitlistItem!
   waitlistItem(where: WaitlistItemSubscriptionWhereInput): WaitlistItemSubscriptionPayload!
->>>>>>> fddfa989525de6d245c81b6d27d3e195f92c57d2
 }
