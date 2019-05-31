@@ -1,9 +1,5 @@
 # source: https://us1.prisma.sh/david-l-starr-b3bc24/FoodQ/dev
-<<<<<<< HEAD
-# timestamp: Wed May 15 2019 14:26:54 GMT-0800 (GMT-08:00)
-=======
 # timestamp: Tue May 21 2019 12:26:16 GMT-0800 (GMT-08:00)
->>>>>>> fddfa989525de6d245c81b6d27d3e195f92c57d2
 
 type AggregateMenuItem {
   count: Int!
@@ -660,11 +656,7 @@ type WaitlistItem implements Node {
   id: ID!
   name: String!
   partySize: Int!
-<<<<<<< HEAD
-  phoneNumber: Int
-=======
   phoneNumber: String
->>>>>>> fddfa989525de6d245c81b6d27d3e195f92c57d2
   createdAt: DateTime
   updatedAt: DateTime
 }
@@ -683,11 +675,7 @@ input WaitlistItemCreateInput {
   id: ID
   name: String!
   partySize: Int!
-<<<<<<< HEAD
-  phoneNumber: Int
-=======
   phoneNumber: String
->>>>>>> fddfa989525de6d245c81b6d27d3e195f92c57d2
 }
 
 """An edge in a connection."""
@@ -718,11 +706,7 @@ type WaitlistItemPreviousValues {
   id: ID!
   name: String!
   partySize: Int!
-<<<<<<< HEAD
-  phoneNumber: Int
-=======
   phoneNumber: String
->>>>>>> fddfa989525de6d245c81b6d27d3e195f92c57d2
   createdAt: DateTime
   updatedAt: DateTime
 }
@@ -767,21 +751,13 @@ input WaitlistItemSubscriptionWhereInput {
 input WaitlistItemUpdateInput {
   name: String
   partySize: Int
-<<<<<<< HEAD
-  phoneNumber: Int
-=======
   phoneNumber: String
->>>>>>> fddfa989525de6d245c81b6d27d3e195f92c57d2
 }
 
 input WaitlistItemUpdateManyMutationInput {
   name: String
   partySize: Int
-<<<<<<< HEAD
-  phoneNumber: Int
-=======
   phoneNumber: String
->>>>>>> fddfa989525de6d245c81b6d27d3e195f92c57d2
 }
 
 input WaitlistItemWhereInput {
@@ -895,30 +871,7 @@ input WaitlistItemWhereInput {
 
   """All values greater than or equal the given value."""
   partySize_gte: Int
-<<<<<<< HEAD
-  phoneNumber: Int
 
-  """All values that are not equal to given value."""
-  phoneNumber_not: Int
-
-  """All values that are contained in given list."""
-  phoneNumber_in: [Int!]
-
-  """All values that are not contained in given list."""
-  phoneNumber_not_in: [Int!]
-
-  """All values less than the given value."""
-  phoneNumber_lt: Int
-
-  """All values less than or equal the given value."""
-  phoneNumber_lte: Int
-
-  """All values greater than the given value."""
-  phoneNumber_gt: Int
-
-  """All values greater than or equal the given value."""
-  phoneNumber_gte: Int
-=======
   phoneNumber: String
 
   """All values that are not equal to given value."""
@@ -959,7 +912,6 @@ input WaitlistItemWhereInput {
 
   """All values not ending with the given string."""
   phoneNumber_not_ends_with: String
->>>>>>> fddfa989525de6d245c81b6d27d3e195f92c57d2
   createdAt: DateTime
 
   """All values that are not equal to given value."""
