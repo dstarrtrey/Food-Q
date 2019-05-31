@@ -23,26 +23,26 @@ const Mutation = {
     });
     // Twilio functionality
 
-    // const {
-    //   id,
-    //   phoneNumber,
-    //   name,
-    //   partySize,
-    // } = newWaitlistItem;
-    // const textUrl = `${process.env.FRONTEND_URL}/list/${id}`;
+    const {
+      id,
+      phoneNumber,
+      name,
+      partySize,
+    } = newWaitlistItem;
+    const textUrl = `${process.env.FRONTEND_URL}/list/${id}`;
 
-    // client.messages
-    //   .create({
-    //   // the body msg is what the text will apppear
-    //     body: `Hello ${name}, the status of your party of ${partySize} can be
-    //     found at: ${textUrl}.`,
-    //     // this is the # thats
-    //     from: process.env.TWILIO_PHONE_NUMBER,
-    //     // currently in trial mode, you can only send to reigstered phone #s
-    //     // which is my number, call me maybe
-    //     to: phoneNumber,
-    //   })
-    //   .then(message => console.log(message.sid))
+    client.messages
+      .create({
+      // the body msg is what the text will apppear
+        body: `Hello ${name}, the status of your party of ${partySize} can be
+        found at: ${textUrl}.`,
+        // this is the # thats
+        from: process.env.TWILIO_PHONE_NUMBER,
+        // currently in trial mode, you can only send to reigstered phone #s
+        // which is my number, call me maybe
+        to: phoneNumber,
+      })
+      .then(message => console.log(message.sid))
 
     return newWaitlistItem;
   },
