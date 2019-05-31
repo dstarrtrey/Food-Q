@@ -9,7 +9,7 @@ import { getMainDefinition } from 'apollo-utilities';
 export const BACKEND_ENDPOINT = 'localhost:4000';
 
 const httpLink = new HttpLink({
-  uri: process.env.NODE_ENV === 'development' ? `http://${BACKEND_ENDPOINT}` : `http://${BACKEND_ENDPOINT}`,
+  uri: process.env.NODE_ENV === 'development' ? `https://foodq-prod.herokuapp.com/` : `https://foodq-prod.herokuapp.com/`,
   credentials: 'include'
 })
 
