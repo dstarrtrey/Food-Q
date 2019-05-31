@@ -1,10 +1,3 @@
-<<<<<<< HEAD
-const Mutation = {
-  async createUser(parent, args, ctx, info) {
-    // Check if logged in
-
-    const newUser = await ctx.db.mutation.createUser({
-=======
 const bcrypt = require('bcryptjs');
 const client = require('twilio')(process.env.TWILIO_SID, process.env.TWILIO_AUTH_TOKEN);
 const { PUBSUB_NEW_WAITLIST_ITEM } = require('../shared/constants');
@@ -21,15 +14,10 @@ const Mutation = {
 
   async createWaitlistItem(parent, args, { db, pubsub }, info) {
     const newWaitlistItem = await db.mutation.createWaitlistItem({
->>>>>>> fddfa989525de6d245c81b6d27d3e195f92c57d2
       data: {
         ...args,
       },
     }, info);
-<<<<<<< HEAD
-
-    return newUser;
-=======
     pubsub.publish(PUBSUB_NEW_WAITLIST_ITEM, {
       newWaitlistItem,
     });
@@ -113,7 +101,6 @@ const Mutation = {
       return true;
     }
     return false;
->>>>>>> fddfa989525de6d245c81b6d27d3e195f92c57d2
   },
 };
 
