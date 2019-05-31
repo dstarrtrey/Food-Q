@@ -26,13 +26,13 @@
     "subscriptions-transport-ws": "^0.9.16"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-scripts start -p $PORT",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
     "dev": "react-scripts start",
+    "heroku-postbuild": "react-scripts build",
     "docker": "start npm run dev && start npm run dev --prefix ../backend"
   },
   "eslintConfig": {

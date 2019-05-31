@@ -9,7 +9,7 @@ import { getMainDefinition } from 'apollo-utilities';
 export const BACKEND_ENDPOINT = 'localhost:4000';
 
 const httpLink = new HttpLink({
-  uri: process.env.NODE_ENV === 'development' ? `http://${BACKEND_ENDPOINT}` : `http://${BACKEND_ENDPOINT}`,
+  uri: process.env.NODE_ENV === 'development' ? `https://foodq-prod.herokuapp.com/` : `https://foodq-prod.herokuapp.com/`,
   credentials: 'include'
 })
 
@@ -17,7 +17,7 @@ const httpLink = new HttpLink({
 // This is particularly important for GraphQL subscriptions, which we use 
 // to automatically display new items on the waitlist.
 const wsLink = new WebSocketLink({
-  uri: `ws://${BACKEND_ENDPOINT}`,
+  uri: `ws://foodq-prod.herokuapp.com`,
   options: {
     reconnect: true
   }
