@@ -8,6 +8,9 @@ import ShowWaitlistItems from '../ShowWaitlistItems';
 import { Col, Row, Container } from "../Grid";
 import Table from 'react-bootstrap/Table';
 
+
+
+
 export const GET_WAITLIST_QUERY = gql`
   query GET_WAITLIST_QUERY {
     waitlistItems {

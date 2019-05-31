@@ -15,7 +15,6 @@ const LoginGate = props => {
       {({ loading, error, data, refetch}) => {
         if (loading) return <p>Loading...</p>
         if (error) return <p>Error: {error.message}</p>
-        console.log(data);
         return data.doIExist ? props.children : <Login fetchLoginState={refetch}>Please log in to continue.</Login>;
       }}
     </Query>
