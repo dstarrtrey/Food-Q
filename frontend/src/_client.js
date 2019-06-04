@@ -4,12 +4,12 @@ import { HttpLink } from 'apollo-link-http';
 import { WebSocketLink } from 'apollo-link-ws';
 import { split } from 'apollo-link';
 import { getMainDefinition } from 'apollo-utilities';
-
+import { devEndpoint, prodEndpoint } from './config';
 // Sets up Apollo client to manage caching and graphql queries/mutations
-export const BACKEND_ENDPOINT = process.env.NODE_ENV === 'development' ? `https://localhost:4000` : process.env.REACT_APP_BACKEND_ENDPOINT;
+export const BACKEND_ENDPOINT = process.env.NODE_ENV === 'development' ? devEndpoint : prodEndpoint;
 
 const httpLink = new HttpLink({
-  uri: `http://${BACKEND_ENDPOINT}`,
+  uri: BACKEND_ENDPOINT,
   credentials: 'include'
 })
 
@@ -17,7 +17,7 @@ const httpLink = new HttpLink({
 // This is particularly important for GraphQL subscriptions, which we use 
 // to automatically display new items on the waitlist.
 const wsLink = new WebSocketLink({
-  uri: `ws://${BACKEND_ENDPOINT}`,
+  uri: `ws://${BACKEND_ENDPOINT.split('//')[1]}`,
   options: {
     reconnect: true
   }
