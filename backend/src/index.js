@@ -27,10 +27,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 server.start({
-  cors: {
-    credentials: false,
-    origin: '*',
-  },
 }, (details) => {
   console.log(`Server is now running on port ${details.port}`);
 });
