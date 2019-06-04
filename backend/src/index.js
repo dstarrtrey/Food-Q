@@ -28,7 +28,7 @@ app.use(bodyParser.json());
 
 server.start({
   cors: {
-    credentials: true,
+    credentials: false,
     origin: '*',
   },
 }, (details) => {
