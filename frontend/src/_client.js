@@ -6,10 +6,10 @@ import { split } from 'apollo-link';
 import { getMainDefinition } from 'apollo-utilities';
 
 // Sets up Apollo client to manage caching and graphql queries/mutations
-export const BACKEND_ENDPOINT = 'localhost:4000';
+export const BACKEND_ENDPOINT = process.env.NODE_ENV === 'development' ? `https://localhost:4000` : process.env.REACT_APP_BACKEND_ENDPOINT;
 
 const httpLink = new HttpLink({
-  uri: process.env.NODE_ENV === 'development' ? `https://foodq-prod.herokuapp.com/` : `https://foodq-prod.herokuapp.com/`,
+  uri: `http://${BACKEND_ENDPOINT}`,
   credentials: 'include'
 })
 
@@ -17,7 +17,7 @@ const httpLink = new HttpLink({
 // This is particularly important for GraphQL subscriptions, which we use 
 // to automatically display new items on the waitlist.
 const wsLink = new WebSocketLink({
-  uri: `ws://foodq-prod.herokuapp.com`,
+  uri: `ws://${BACKEND_ENDPOINT}`,
   options: {
     reconnect: true
   }

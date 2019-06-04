@@ -1,6 +1,4 @@
-#endpoint: ${env:PRISMA_ENDPOINT}
-#endpoint: https://food-q-aaa497f5aa.herokuapp.com/Food Q/prod
-endpoint: https://food-q-aaa497f5aa.herokuapp.com/FoodQ/prod
+endpoint: ${env:PRISMA_ENDPOINT}
 datamodel: datamodel.prisma
 secret: ${env:PRISMA_SECRET}
 hooks: 

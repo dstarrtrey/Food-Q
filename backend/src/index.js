@@ -3,7 +3,6 @@ require('dotenv').config();
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const createServer = require('./createServer');
-// const db = require('./db');
 
 const server = createServer();
 const app = server.express;
