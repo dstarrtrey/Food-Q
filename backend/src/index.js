@@ -29,7 +29,7 @@ app.use(bodyParser.json());
 server.start({
   cors: {
     credentials: true,
-    origin: process.env.FRONTEND_URL,
+    origin: '*',
   },
 }, (details) => {
   console.log(`Server is now running on port ${details.port}`);
