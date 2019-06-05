@@ -4,6 +4,8 @@ import waitlisto from './waitlisto.png';
 import waitlistyum from './waitlistyum.png';
 import './LoadingBar.css';
 
+import angryfishname from '../components/angryfishname.png';
+
 const StyledBar = styled.div`
   display: grid;
   background-color: white;
