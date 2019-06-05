@@ -77,7 +77,11 @@ function Login(props) {
                           placeholder="Password" 
                         />
                         {error && <p><LoginError>Error: {error.graphQLErrors[0].message}</LoginError></p>}
-                        <SubmitBtn>Log In</SubmitBtn>
+                        <SubmitBtn onClick={async e => {
+                          e.preventDefault();
+                          await login();
+                          props.fetchLoginState();
+                        }}>Log In</SubmitBtn>
                       </fieldset>
                     </form>
                 )}
