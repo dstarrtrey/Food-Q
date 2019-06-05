@@ -179,8 +179,6 @@ function ClientList(props) {
       </Row>
   </Container>
       </div>
-      
-
   );
 }
 
