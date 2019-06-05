@@ -17,7 +17,7 @@ const httpLink = new HttpLink({
 // This is particularly important for GraphQL subscriptions, which we use 
 // to automatically display new items on the waitlist.
 const wsLink = new WebSocketLink({
-  uri: `ws://${BACKEND_ENDPOINT.split('//')[1]}`,
+  uri: `wss://${BACKEND_ENDPOINT.split('//')[1]}`,
   options: {
     reconnect: true
   }
