@@ -25,3 +25,11 @@ export function FormBtn(props) {
     </button>
   );
 }
+
+export function SubmitBtn(props) {
+  return (
+    <input {...props} type="submit" style={{ float: "right", marginBottom: 10 }} className="btn btn-info">
+      {props.children}
+    </input>
+  );
+}
