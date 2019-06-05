@@ -36,7 +36,6 @@
     "predeploy": "npm run build",
     "dev": "react-scripts start",
     "deploy": "npm run build",
-    "heroku-postbuild": "npm run deploy",
     "docker": "start npm run dev && start npm run dev --prefix ../backend"
   },
   "eslintConfig": {
