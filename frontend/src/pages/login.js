@@ -43,7 +43,7 @@ function Login(props) {
       };
       return isLoggedIn ? <Redirect to="/AdminList" /> : (
       <>
-        {loading ? <Loading /> : null}
+        {loading ? <Loading show={loading} fullpage/> : null}
         <div className="loginStyle">
         <img src="images/foodqlogo.png" alt="foodq logo"></img>
           <Container> 
@@ -53,7 +53,7 @@ function Login(props) {
                 <Mutation mutation={ADMIN_LOGIN_MUTATION} variables={{username, password}}>
                   {(login, { loading, error }) => (
                     <>
-                      {loading ? <Loading /> : null}
+                      {loading ? <Loading show={loading}/> : null}
                       <form
                         onSubmit={async e => {
                           console.log("submitted!");
