@@ -35,7 +35,7 @@
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "dev": "react-scripts start",
-    "deploy": "npm run build",
+    "deploy": "serve -s build -l 3000",
     "docker": "start npm run dev && start npm run dev --prefix ../backend"
   },
   "eslintConfig": {

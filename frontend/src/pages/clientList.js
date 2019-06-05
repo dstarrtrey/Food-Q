@@ -46,6 +46,7 @@ export const MY_PARTY_QUERY = gql`
     }
   }
 `;
+
 //logic
 
 function ClientList(props) {

@@ -25,6 +25,7 @@ export const ADMIN_LOGIN_MUTATION = gql`
 const LoginError = styled.small`
   color: #989696;
 `;
+
 const StyledMessage = styled.p`
   color: white;
   text-decoration: underline;
