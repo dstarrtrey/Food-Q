@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import gql from 'graphql-tag';
 import { Query, Mutation } from 'react-apollo';
 import styled from 'styled-components';
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import "./Login.css";
 import { Col, Row, Container } from "../components/Grid";
-import { Input, TextArea, SubmitBtn } from "../components/Form";
-
+import { Input, SubmitBtn } from "../components/Form";
+import Loading from '../components/Loading'
 export const IS_LOGGED_IN_QUERY = gql`
   query IS_LOGGED_IN_QUERY {
     isLoggedIn
@@ -38,12 +38,12 @@ function Login(props) {
   return (
   <Query query={IS_LOGGED_IN_QUERY}>
     {({loading, error, data: { isLoggedIn }}) => {
-      if (loading) return "loading...";
       if (error) {
         console.log(error)
       };
-      return isLoggedIn ? <Redirect to="/testAdminList" /> : (
+      return isLoggedIn ? <Redirect to="/AdminList" /> : (
       <>
+        {loading ? <Loading /> : null}
         <div className="loginStyle">
         <img src="images/foodqlogo.png" alt="foodq logo"></img>
           <Container> 
@@ -52,34 +52,41 @@ function Login(props) {
                 <StyledMessage>{props.children}</StyledMessage>
                 <Mutation mutation={ADMIN_LOGIN_MUTATION} variables={{username, password}}>
                   {(login, { loading, error }) => (
-                    <form
-                      onSubmit={async e => {
-                        e.preventDefault();
-                        await login();
-                        props.fetchLoginState();
-                      }}
-                      className="userform"
-                    >
-                      <p className="Username">Username</p>
-                      <fieldset disabled={loading}>
-                        <Input
-                          name="username"
-                          value={username}
-                          onChange={e => setUsername(e.target.value)}
-                          placeholder="Login" 
-                        />
-                          <p className="Password">Password</p>
-                        <Input
-                          type="password"
-                          name="password"
-                          value={password}
-                          onChange={e => setPassword(e.target.value)}
-                          placeholder="Password" 
-                        />
-                        {error && <p><LoginError>Error: {error.graphQLErrors[0].message}</LoginError></p>}
-                        <SubmitBtn>Log In</SubmitBtn>
-                      </fieldset>
-                    </form>
+                    <>
+                      {loading ? <Loading /> : null}
+                      <form
+                        onSubmit={async e => {
+                          console.log("submitted!");
+                          e.preventDefault();
+                          await login();
+                          props.fetchLoginState();
+                        }}
+                        className="userform"
+                      >
+                        <p className="Username">Username</p>
+                        <fieldset disabled={loading}>
+                          <Input
+                            name="username"
+                            value={username}
+                            onChange={e => setUsername(e.target.value)}
+                            placeholder="Username" 
+                          />
+                            <p className="Password">Password</p>
+                          <Input
+                            type="password"
+                            name="password"
+                            value={password}
+                            onChange={e => setPassword(e.target.value)}
+                            placeholder="Password" 
+                          />
+                          {error && <p><LoginError>Error: {error.graphQLErrors[0].message}</LoginError></p>}
+                          <SubmitBtn
+                            type="submit"
+                            value="Log In"
+                          />
+                        </fieldset>
+                      </form>
+                    </>
                 )}
                 </Mutation>
               </Col>

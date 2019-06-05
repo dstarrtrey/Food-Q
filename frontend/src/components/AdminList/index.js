@@ -6,9 +6,8 @@ import { last, remove, isEqual, some }  from 'lodash';
 import AddWaitlistItem from '../Wrapper/AddWaitlistItem';
 import ShowWaitlistItems from '../ShowWaitlistItems';
 import { Col, Row, Container } from "../Grid";
-import Table from 'react-bootstrap/Table';
-
-
+import Loading from '../Loading';
+// import Table from 'react-bootstrap/Table';
 
 
 export const GET_WAITLIST_QUERY = gql`
@@ -103,10 +102,9 @@ function AdminList() {
 
       <Query query={GET_WAITLIST_QUERY}>
       {({ loading, error, data}) => {
-        if (loading) return "Loading...";
+        if (loading) return <Loading show={loading} />
         if (error) return `Error! ${error.message}`;
-        !waitlist.length && setWaitlist([...data.waitlistItems]);
-       
+        data.waitlistItems.length && !waitlist.length && setWaitlist([...data.waitlistItems]);
         return (
         
         <>
@@ -121,7 +119,6 @@ function AdminList() {
               </Subscription>
           </div>
         </>
-        
         );
       }}
       </Query>

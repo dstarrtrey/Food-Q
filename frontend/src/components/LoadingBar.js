@@ -4,7 +4,7 @@ import waitlisto from './waitlisto.png';
 import waitlistyum from './waitlistyum.png';
 import './LoadingBar.css';
 
-import angryfishname from '../components/angryfishname.png';
+// import angryfishname from '../components/angryfishname.png';
 
 const StyledBar = styled.div`
   display: grid;
@@ -19,18 +19,6 @@ const StyledBar = styled.div`
   align-items: center;
 `;
 
-const StyledO = styled.img`
-  border: 3px solid green;
-  width: 50px;
-  height: 30px;
-`;
-
-const StyledYum = styled.img`
-  border: 3px solid yellow;
-  width: 50px;
-  height: 50px;
-`;
-
 const LoadingBar = ({ starts, index }) => {
   console.log(starts.startingLength, index);
 
@@ -42,13 +30,9 @@ const LoadingBar = ({ starts, index }) => {
   return (
     <StyledBar amount={starts.startingLength}>
       {myProgress.map((index, i) => {
-        {/* If it is the user's turn */}
         if (index && i === myProgress.length - 1) return <div key={i}>FOOD TIME</div> 
-        {/* The user's index */}
         if (index) return <img key={i} className="waitlistimg" src={waitlisto} alt="My Status" />
-        {/* The final index */}
         if (i === myProgress.length - 1) return <img key={i} className="waitlistimg" src={waitlistyum} alt="Food Time" />
-        {/* Any other index in between */}
         return <div key={i}>|</div>
       })}
     </StyledBar>

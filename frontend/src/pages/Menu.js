@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import styled from 'styled-components';
-import MenuItem from '../components/MenuItem';
-import Card from 'react-bootstrap/Card'
-import CardDeck from 'react-bootstrap/CardDeck'
+import React from "react";
+// import styled from 'styled-components';
+// import MenuItem from '../components/MenuItem';
+// import Card from 'react-bootstrap/Card'
+// import CardDeck from 'react-bootstrap/CardDeck'
 import { Col, Row, Container } from "../components/Grid/index";
 import NavBar from '../components/NavBar/index'
 import happyhour1 from '../components/happyhour1.png';
@@ -10,11 +10,11 @@ import happyhour2 from '../components/happyhour2.png';
 import "./Menu.css";
 
 
-const StyledMenu = styled.div`
-  display: grid;
-  grid-template-columns: 1fr auto;
-  margin: 50px;
-`;
+// const StyledMenu = styled.div`
+//   display: grid;
+//   grid-template-columns: 1fr auto;
+//   margin: 50px;
+// `;
 
 function Menu() {
   // const [menu, setMenu] = useState([
