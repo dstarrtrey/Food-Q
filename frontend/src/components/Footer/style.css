@@ -15,3 +15,10 @@
     font-Size: 12px;
     background-Image: linear-gradient(to right,  #cb2d3e, #e65337);
   }
+
+  .footer-link {
+    color: white;
+  }
+  .footer-link:hover {
+    color: #bfbfbf;
+  }

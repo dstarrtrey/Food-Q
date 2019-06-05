@@ -5,8 +5,8 @@ import { remove, some, last, isEqual } from 'lodash';
 import Card from 'react-bootstrap/Card';
 import "./ClientList.css";
 import { Col, Row, Container } from "../components/Grid";
-import { Input, TextArea, FormBtn } from "../components/Form";
 import LoadingBar from '../components/LoadingBar';
+import Loading from '../components/Loading';
 
 export const GET_WAITLIST_IDS_QUERY = gql`
   query GET_WAITLIST_IDS_QUERY {
@@ -54,7 +54,6 @@ function ClientList(props) {
     startingLength: 0,
   })
   const { id }= props.match.params;
-  // const id = 'cjw9fz5xhjlcu0b12scf10c6d';
   
   // Will automatically generate updates for waitlist in Subscription component
   const subscriptionFunction = ({ data, loading}) => {
@@ -105,7 +104,7 @@ function ClientList(props) {
      <hr className="clientHr"></hr>
      <Query query={GET_WAITLIST_IDS_QUERY}>
        {({ loading, error, data}) => {
-          if (loading) return "Loading...";
+          if (loading) return <Loading fullpage show={loading} />;
           if (error) return `Error! ${error.message}`;
           if (!waitlist.length) {
             setWaitlist([...data.waitlistItems]);
@@ -122,7 +121,7 @@ function ClientList(props) {
               />
               <Query query={MY_PARTY_QUERY} variables={{ id }}>
                 {({ loading, error, data }) => {
-                  if (loading) return "Loading...";
+                  if (loading) return <Loading show={loading} />;
                   if (error) return `Error! ${error.message}`;
                   const { name, partySize } = data.waitlistItem;
                   return <div>
@@ -131,7 +130,7 @@ function ClientList(props) {
                     <Card style={{ textAlign: 'center' }}> 
                     <Card.Header>Your Party</Card.Header>
                     <Card.Body>
-                    <Card.Title>Some statement here or image</Card.Title> 
+                    <Card.Title>You will be seated shortly</Card.Title> 
                     <Card.Text>
                       {name} , Party of {partySize}
                     </Card.Text>
@@ -149,7 +148,7 @@ function ClientList(props) {
               <Card style={{ textAlign: 'center' }}> 
               <Card.Header>Parties Ahead of You</Card.Header>
               <Card.Body>
-              <Card.Title>Some statement here or image</Card.Title> 
+              <Card.Title>Number of groups waiting ahead of you</Card.Title> 
               <Card.Text>
               {getAhead(waitlist)}
               </Card.Text>
@@ -159,9 +158,9 @@ function ClientList(props) {
 
               <Col size="md-6 lrg-6">
               <Card style={{ textAlign: 'center' }}> 
-              <Card.Header>Party Size in Front</Card.Header>
+              <Card.Header>Party Size in Front of You</Card.Header>
               <Card.Body>
-              <Card.Title>Some statement here or image</Card.Title>  
+              <Card.Title>This is the size of those waiting just ahead of you</Card.Title>  
               <Card.Text>{getInFront(waitlist)}</Card.Text>
               </Card.Body>
               </Card>
