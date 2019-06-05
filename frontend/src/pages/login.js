@@ -43,7 +43,7 @@ function Login(props) {
       };
       return isLoggedIn ? <Redirect to="/AdminList" /> : (
       <>
-        {loading ? <Loading /> : null}
+        {loading ? <Loading show={loading} fullpage/> : null}
         <div className="loginStyle">
         <img src="images/foodqlogo.png" alt="foodq logo"></img>
           <Container> 
