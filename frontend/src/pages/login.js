@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { Link, Redirect } from "react-router-dom";
 import "./Login.css";
 import { Col, Row, Container } from "../components/Grid";
-import { Input, TextArea, FormBtn } from "../components/Form";
+import { Input, TextArea, SubmitBtn } from "../components/Form";
 
 export const IS_LOGGED_IN_QUERY = gql`
   query IS_LOGGED_IN_QUERY {
@@ -38,7 +38,7 @@ function Login(props) {
   return (
   <Query query={IS_LOGGED_IN_QUERY}>
     {({loading, error, data: { isLoggedIn }}) => {
-      if (loading) return null;
+      if (loading) return "loading...";
       if (error) {
         console.log(error)
       };
@@ -77,7 +77,7 @@ function Login(props) {
                           placeholder="Password" 
                         />
                         {error && <p><LoginError>Error: {error.graphQLErrors[0].message}</LoginError></p>}
-                        <FormBtn>Log In</FormBtn>
+                        <SubmitBtn>Log In</SubmitBtn>
                       </fieldset>
                     </form>
                 )}
