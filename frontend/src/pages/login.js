@@ -66,7 +66,7 @@ function Login(props) {
                           name="username"
                           value={username}
                           onChange={e => setUsername(e.target.value)}
-                          placeholder="Login" 
+                          placeholder="Username" 
                         />
                           <p className="Password">Password</p>
                         <Input
@@ -77,11 +77,10 @@ function Login(props) {
                           placeholder="Password" 
                         />
                         {error && <p><LoginError>Error: {error.graphQLErrors[0].message}</LoginError></p>}
-                        <SubmitBtn onClick={async e => {
-                          e.preventDefault();
-                          await login();
-                          props.fetchLoginState();
-                        }}>Log In</SubmitBtn>
+                        <input
+                          type="submit"
+                          value="Log In"
+                        />
                       </fieldset>
                     </form>
                 )}
