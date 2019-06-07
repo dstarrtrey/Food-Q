@@ -1,3 +1,18 @@
+# Food Q
+A restaurant and customer-facing waitlist app using React-Apollo, GraphQL, and Prisma.
+
+## Usage
+View a live demo on [Heroku](https://foodq-react-prod.herokuapp.com/AdminList)
+  
+The demo site will ask for a login (use `username: foodq` `password: test`) and subsequently you can view the Admin waitlist where you can add items at your leisure (feel free to add an item with your phone number to test the automated text-messaging service implemented, and delete the item whenever you wish.
+
+The `ClientList` link on the (development) navbar at the bottom will take you to the most recently added item, in which you can delete items ahead of it on another tab to test the realtime updates.
+
+## Installation
+`git clone` this repository and configure environmental variables for Prisma, Twilio, and node environment. Then run the command `npm run dev` in both the frontend and backend directories.
+
+
+# Create React App
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
